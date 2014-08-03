@@ -7,19 +7,19 @@
              d1p1:Ignorable="d"
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Tasker.ViewModel"
-             xmlns:viewModel="clr-namespace:Tasker.PCL.ViewModel;assembly=Tasker.PCL">
+             xmlns:viewModel="clr-namespace:Tasker.PCL.ViewModel;assembly=Tasker.PCL"
+             xmlns:resources="clr-namespace:Tasker.Resources">
     <!--Application Resources-->
     <Application.Resources>
-        <local:LocalizedStrings xmlns:local="clr-namespace:Tasker" 
-                                x:Key="LocalizedStrings" />
-        <viewModel:ViewModelLocator x:Key="Locator" 
+        <resources:LocalizedStrings x:Key="LocalizedStrings" />
+        <viewModel:ViewModelLocator x:Key="Locator"
                                     d:IsDataSource="True" />
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->
-        <shell:PhoneApplicationService Launching="Application_Launching" 
+        <shell:PhoneApplicationService Launching="Application_Launching"
                                        Closing="Application_Closing"
-                                       Activated="Application_Activated" 
+                                       Activated="Application_Activated"
                                        Deactivated="Application_Deactivated" />
     </Application.ApplicationLifetimeObjects>
 </Application>

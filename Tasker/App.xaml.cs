@@ -6,6 +6,7 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Tasker.PCL.Resources;
 using Tasker.Resources;
 
 namespace Tasker
