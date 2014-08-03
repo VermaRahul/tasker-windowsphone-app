@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Extensions\FrameExtension.cs" />
     <Compile Include="Resources\LocalizedStrings.cs" />
+    <Compile Include="Utils\SettingsManager.cs" />
     <Compile Include="ViewModel\NavigationService.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainPage.xaml.cs">
