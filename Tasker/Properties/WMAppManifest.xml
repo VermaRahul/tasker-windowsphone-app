@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{506d3ff6-1339-44e4-9ec9-3487b8b2315e}" Title="Tasker" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Tasker author" Description="Sample description" Publisher="Tasker" PublisherID="{8c88f675-c454-4d86-b952-9291fdce4c85}">
+  <App xmlns="" ProductID="{cb43c8ef-49b3-48d1-9fdc-d0abcbb50b53}" Title="Tasker" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Tasker author" Description="Sample description" Publisher="Tasker" PublisherID="{e00d5210-de95-4f2b-a3c3-6da8370626e0}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -19,19 +19,13 @@
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>ProjectForTemplates.WP8</Title>
+          <Title>Tasker</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
-          <LargeBackgroundImageURI>
-          </LargeBackgroundImageURI>
-          <LargeBackContent>
-          </LargeBackContent>
-          <LargeBackBackgroundImageURI>
-          </LargeBackBackgroundImageURI>
           <DeviceLockImageURI>
           </DeviceLockImageURI>
           <HasLarge>

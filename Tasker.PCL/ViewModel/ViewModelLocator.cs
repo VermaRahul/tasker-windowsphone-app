@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 
 namespace Tasker.PCL.ViewModel
@@ -9,7 +9,10 @@ namespace Tasker.PCL.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
-        static ViewModelLocator()
+        /// <summary>
+        /// Initializes a new instance of the ViewModelLocator class.
+        /// </summary>
+        public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
@@ -32,7 +35,7 @@ namespace Tasker.PCL.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-
+        
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>
