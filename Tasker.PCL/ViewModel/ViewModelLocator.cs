@@ -10,16 +10,19 @@ namespace Tasker.PCL.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<TasksViewModel>();
         }
 
         public MainViewModel MainViewModel
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
+            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
-        
+
+        public TasksViewModel TasksViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<TasksViewModel>(); }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

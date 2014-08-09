@@ -42,8 +42,10 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\LocalizedStrings.cs" />
+    <Compile Include="Utils\AppUtils.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NavigationService.cs" />
+    <Compile Include="ViewModel\TasksViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Tasker.PCL.ViewModel
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class MainViewModel : ViewModelBase
     {
         /// <summary>
@@ -17,6 +13,34 @@ namespace Tasker.PCL.ViewModel
         {
            
         }
+
+        #region Properties
+
+        #endregion
+
+        #region Commands
+
+        private RelayCommand _tasksButtonCommand;
+
+        /// <summary>
+        /// Gets the TasksButtonCommand.
+        /// </summary>
+        public RelayCommand TasksButtonCommand
+        {
+            get
+            {
+                return _tasksButtonCommand
+                       ?? (_tasksButtonCommand = new RelayCommand(ExecuteTasksButtonCommand));
+            }
+        }
+
+        private void ExecuteTasksButtonCommand()
+        {
+            var a = 1;
+        }
+
+        #endregion
+
 
         ////public override void Cleanup()
         ////{
