@@ -80,11 +80,29 @@ namespace Tasker.PCL.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MY APPLICATION.
+        ///   Looks up a localized string similar to tasker.
         /// </summary>
         public static string ApplicationTitle {
             get {
                 return ResourceManager.GetString("ApplicationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to home.
+        /// </summary>
+        public static string MainPage_Home {
+            get {
+                return ResourceManager.GetString("MainPage_Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        public static string MainPage_Tasks {
+            get {
+                return ResourceManager.GetString("MainPage_Tasks", resourceCulture);
             }
         }
         
@@ -103,6 +121,24 @@ namespace Tasker.PCL.Resources {
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to item 1.
+        /// </summary>
+        public static string TasksPage_Item_1 {
+            get {
+                return ResourceManager.GetString("TasksPage_Item_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to item 2.
+        /// </summary>
+        public static string TasksPage_Item_2 {
+            get {
+                return ResourceManager.GetString("TasksPage_Item_2", resourceCulture);
             }
         }
     }

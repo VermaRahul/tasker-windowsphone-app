@@ -126,7 +126,19 @@
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>MY APPLICATION</value>
+    <value>tasker</value>
+  </data>
+  <data name="TasksPage_Item_1" xml:space="preserve">
+    <value>item 1</value>
+  </data>
+  <data name="TasksPage_Item_2" xml:space="preserve">
+    <value>item 2</value>
+  </data>
+  <data name="MainPage_Home" xml:space="preserve">
+    <value>home</value>
+  </data>
+  <data name="MainPage_Tasks" xml:space="preserve">
+    <value>Tasks</value>
   </data>
   <data name="AppBarButtonText" xml:space="preserve">
     <value>add</value>
