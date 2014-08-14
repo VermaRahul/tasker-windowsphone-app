@@ -1,9 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
+using Tasker.PCL.Model;
 
 namespace Tasker.PCL.ViewModel
 {
-    public class TasksViewModel : ViewModelBase
+    public class TasksViewModel : AppViewModel
     {
+        public TasksViewModel(AppContext context)
+            : base(context)
+        {
+        }        
 
         #region Properties
 
@@ -12,7 +17,6 @@ namespace Tasker.PCL.ViewModel
         #region Commands
 
         #endregion
-
 
     }
 }

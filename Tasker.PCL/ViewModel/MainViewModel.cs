@@ -1,18 +1,21 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
+using Tasker.PCL.Model;
 
 namespace Tasker.PCL.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : AppViewModel
     {
+
+        public MainViewModel(AppContext context)
+            : base(context)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
-        {
-           
-        }
 
         #region Properties
 
