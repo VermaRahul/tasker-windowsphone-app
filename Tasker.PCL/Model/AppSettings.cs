@@ -13,7 +13,7 @@ namespace Tasker.PCL.Model
 
         public bool IsValid()
         {
-            return !String.IsNullOrEmpty(AccessToken);
+            return !String.IsNullOrEmpty(AccessToken) && !String.IsNullOrEmpty(Username);
         }
     }
 }

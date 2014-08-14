@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using Tasker.PCL.Utils;
+using Tasker.PCL.ViewModel;
 using Tasker.Utils;
 
 namespace Tasker.ViewModel
@@ -9,6 +10,7 @@ namespace Tasker.ViewModel
         public ViewModelLocator()
         {
             SimpleIoc.Default.Register<ISettingsManager, SettingsManager>();
+            SimpleIoc.Default.Register<INavigationService, NavigationService>();
         }
     }
 }

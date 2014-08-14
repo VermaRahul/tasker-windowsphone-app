@@ -14,9 +14,16 @@ namespace Tasker.ViewModel
 {
     public class NavigationService : NavigationService<NavigationService.PageId>
     {
+        public NavigationService()
+        {
+            Register(typeof(MainViewModel), PageId.Main);
+            Register(typeof(TasksViewModel), PageId.Tasks);
+        }
+
         public enum PageId
         {
             Main,
+            Tasks
         }
 
         public override void GoBack(object data)
@@ -79,6 +86,9 @@ namespace Tasker.ViewModel
             {
                 case PageId.Main:
                     pageUri = "/View/MainPage.xaml";
+                    break;
+                case PageId.Tasks:
+                    pageUri = "/View/TasksPage.xaml";
                     break;
                 default:
                     pageUri = "/View/MainPage.xaml";

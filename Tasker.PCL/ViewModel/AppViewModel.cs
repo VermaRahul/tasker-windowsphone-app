@@ -11,10 +11,12 @@ namespace Tasker.PCL.ViewModel
     public class AppViewModel : ViewModelBase
     {
         public AppContext Context { get; set; }
+        public INavigationService NavigationService { get; set; }
 
-        public AppViewModel(AppContext context)
+        public AppViewModel(AppContext context, INavigationService navigationService)
         {
             Context = context;
+            NavigationService = navigationService;
         }
     }
 }

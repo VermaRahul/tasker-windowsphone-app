@@ -7,9 +7,8 @@ namespace Tasker.PCL.ViewModel
 {
     public class MainViewModel : AppViewModel
     {
-
-        public MainViewModel(AppContext context)
-            : base(context)
+        public MainViewModel(AppContext context, INavigationService navigationService)
+            : base(context, navigationService)
         {
         }
 
@@ -23,23 +22,23 @@ namespace Tasker.PCL.ViewModel
 
         #region Commands
 
-        private RelayCommand _tasksButtonCommand;
+        private RelayCommand _navigateToTasksCommand;
 
         /// <summary>
-        /// Gets the TasksButtonCommand.
+        /// Gets the NavigateToTasksCommand.
         /// </summary>
-        public RelayCommand TasksButtonCommand
+        public RelayCommand NavigateToTasksCommand
         {
             get
             {
-                return _tasksButtonCommand
-                       ?? (_tasksButtonCommand = new RelayCommand(ExecuteTasksButtonCommand));
+                return _navigateToTasksCommand
+                    ?? (_navigateToTasksCommand = new RelayCommand(ExecuteNavigateToTasksCommand));
             }
         }
 
-        private void ExecuteTasksButtonCommand()
+        private void ExecuteNavigateToTasksCommand()
         {
-            var a = 1;
+            NavigationService.NavigateTo<TasksViewModel>();
         }
 
         #endregion

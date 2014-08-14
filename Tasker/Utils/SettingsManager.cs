@@ -36,6 +36,7 @@ namespace Tasker.Utils
             {
                 _settingsDictionary = new Dictionary<string, string>();
                 _settings[SettingsKey] = _settingsDictionary;
+                _settings.Save();
             }
         }
 
@@ -51,6 +52,9 @@ namespace Tasker.Utils
                 if (_settingsDictionary.ContainsKey(AccessTokenKey))
                     appSettings.AccessToken = GetUnprotectedDataString(_settingsDictionary[AccessTokenKey]);
 
+                if (_settingsDictionary.ContainsKey(UsernameKey))
+                    appSettings.Username = GetUnprotectedDataString(_settingsDictionary[UsernameKey]);
+
                 //TODO Add other settings
 
                 return appSettings.IsValid() ? appSettings : null;
@@ -65,7 +69,17 @@ namespace Tasker.Utils
 
         public bool SaveCredentials(string username, string token)
         {
-            return SaveSetting(username, UsernameKey, true) && SaveSetting(token, AccessTokenKey, true);
+            var res = SaveSetting(username, UsernameKey, true) && SaveSetting(token, AccessTokenKey, true);
+
+            if (!res)
+                RemoveSettings();
+            else
+            {
+                _settings[SettingsKey] = _settingsDictionary;
+                _settings.Save();
+            }
+
+            return res;
         }
 
         public bool SaveSetting(string value, string name, bool isProtected)
