@@ -17,9 +17,8 @@ namespace Tasker.PCL.Model
         {
             _manager = settingsManager;
 
-            Settings = settingsManager.RetrieveSettings();
-
-            if (Settings == null || !Settings.IsValid())
+            Settings = new AppSettings { SettingsManager = settingsManager };
+            if (!Settings.LoadSettings())
             {
                 settingsManager.RemoveSettings();
                 Settings = new AppSettings();

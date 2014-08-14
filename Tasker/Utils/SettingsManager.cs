@@ -17,10 +17,6 @@ namespace Tasker.Utils
 
         private const string SettingsKey = "Settings";
 
-        public const string AccessTokenKey = "AccessToken";
-        public const string UsernameKey = "Username";
-
-
         private IsolatedStorageSettings _settings;
 
         public SettingsManager()
@@ -40,58 +36,20 @@ namespace Tasker.Utils
             }
         }
 
-        public AppSettings RetrieveSettings()
+        public bool SaveSetting(string key, string value, bool isProtected = false)
         {
             try
             {
-                if (_settingsDictionary == null || !_settingsDictionary.Any())
-                    return null;
-
-                var appSettings = new AppSettings();
-
-                if (_settingsDictionary.ContainsKey(AccessTokenKey))
-                    appSettings.AccessToken = GetUnprotectedDataString(_settingsDictionary[AccessTokenKey]);
-
-                if (_settingsDictionary.ContainsKey(UsernameKey))
-                    appSettings.Username = GetUnprotectedDataString(_settingsDictionary[UsernameKey]);
-
-                //TODO Add other settings
-
-                return appSettings.IsValid() ? appSettings : null;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Error loading settings {0}", e);
-            }
-
-            return null;
-        }
-
-        public bool SaveCredentials(string username, string token)
-        {
-            var res = SaveSetting(username, UsernameKey, true) && SaveSetting(token, AccessTokenKey, true);
-
-            if (!res)
-                RemoveSettings();
-            else
-            {
+                _settingsDictionary[key] = isProtected ? GetProtectedDataString(value) : value;
                 _settings[SettingsKey] = _settingsDictionary;
                 _settings.Save();
-            }
-
-            return res;
-        }
-
-        public bool SaveSetting(string value, string name, bool isProtected)
-        {
-            try
-            {
-                _settingsDictionary[name] = isProtected ? GetProtectedDataString(value) : value;
                 return true;
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Failed to save {0} to vault: {1}", name, e);
+                if (_settingsDictionary.ContainsKey(key))
+                    _settingsDictionary.Remove(key);
+                Debug.WriteLine("Failed to save {0} to vault: {1}", key, e);
             }
 
             return false;
@@ -102,6 +60,21 @@ namespace Tasker.Utils
             var result = _settings.Remove(SettingsKey);
             _settings.Save();
             return result;
+        }
+
+        public string RetrieveSetting(string key, bool isProtected = false)
+        {
+            string value;
+            if (_settingsDictionary.TryGetValue(key, out value))
+                return isProtected ? GetUnprotectedDataString(value) : value;
+
+            if (_settings.TryGetValue(key, out value))
+            {
+                _settingsDictionary[key] = value;
+                return isProtected ? GetUnprotectedDataString(value) : value;
+            }
+
+            return null;
         }
 
         private string GetProtectedDataString(string unprotectedData)

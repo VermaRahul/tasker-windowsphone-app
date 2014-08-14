@@ -7,9 +7,8 @@ namespace Tasker.PCL.Utils
 {
     public interface ISettingsManager
     {
-        AppSettings RetrieveSettings();
         bool RemoveSettings();
-        bool SaveSetting(string value, string name, bool isProtected);
-        bool SaveCredentials(string username, string token);
+        bool SaveSetting(string key, string value, bool isProtected = false);
+        string RetrieveSetting(string key, bool isProtected = false);
     }
 }
