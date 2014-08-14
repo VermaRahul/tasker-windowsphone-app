@@ -11,6 +11,7 @@ namespace Tasker.PCL.ViewModel
         string GetAppVersion();
         void RemoveBackEntry();
         void ClearBackStack();
+        void Reset<TViewModel>(object data = null) where TViewModel : ViewModelBase;
     }
 
     public abstract class NavigationService<TViewId> : INavigationService
@@ -32,6 +33,13 @@ namespace Tasker.PCL.ViewModel
 
             // Use the platform specific implementation to perform the View navigation
             NavigateTo(id, data);
+        }
+
+        public void Reset<TViewModel>(object data = null) where TViewModel : ViewModelBase
+        {
+            NavigateTo<TViewModel>(data);
+
+            ClearBackStack();
         }
 
         public abstract void RemoveBackEntry();
