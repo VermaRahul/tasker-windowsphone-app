@@ -9,6 +9,7 @@ namespace Tasker.PCL.Model
     public class AppSettings
     {
         public string AccessToken { get; set; }
+        public string Username { get; set; }
 
         public bool IsValid()
         {

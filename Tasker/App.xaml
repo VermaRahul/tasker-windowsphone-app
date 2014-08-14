@@ -6,14 +6,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              d1p1:Ignorable="d"
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:Tasker.ViewModel"
-             xmlns:viewModel="clr-namespace:Tasker.PCL.ViewModel;assembly=Tasker.PCL"
-             xmlns:resources="clr-namespace:Tasker.Resources">
+             xmlns:vmPCL="clr-namespace:Tasker.PCL.ViewModel;assembly=Tasker.PCL"
+             xmlns:resources="clr-namespace:Tasker.Resources"
+             xmlns:vm="clr-namespace:Tasker.ViewModel">
     <!--Application Resources-->
     <Application.Resources>
         <resources:LocalizedStrings x:Key="LocalizedStrings" />
-        <viewModel:ViewModelLocator x:Key="Locator"
-                                    d:IsDataSource="True" />
+        <vm:ViewModelLocator x:Key="Locator"
+                             d:IsDataSource="True" />
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->

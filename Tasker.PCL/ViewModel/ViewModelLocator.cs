@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using Tasker.PCL.Model;
 
 namespace Tasker.PCL.ViewModel
 {
@@ -8,6 +9,8 @@ namespace Tasker.PCL.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+            SimpleIoc.Default.Register<AppContext>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<TasksViewModel>();

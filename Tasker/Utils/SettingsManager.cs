@@ -7,16 +7,19 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Tasker.PCL.Model;
+using Tasker.PCL.Utils;
 
 namespace Tasker.Utils
 {
-    public class SettingsManager
+    public class SettingsManager : ISettingsManager
     {
         private Dictionary<string, string> _settingsDictionary;
 
         private const string SettingsKey = "Settings";
 
-        private const string AccessToken = "AccessToken";
+        public const string AccessTokenKey = "AccessToken";
+        public const string UsernameKey = "Username";
+
 
         private IsolatedStorageSettings _settings;
 
@@ -45,8 +48,10 @@ namespace Tasker.Utils
 
                 var appSettings = new AppSettings();
 
-                if(_settingsDictionary.ContainsKey(AccessToken))
-                    appSettings.AccessToken = GetUnprotectedDataString(_settingsDictionary[AccessToken]);
+                if (_settingsDictionary.ContainsKey(AccessTokenKey))
+                    appSettings.AccessToken = GetUnprotectedDataString(_settingsDictionary[AccessTokenKey]);
+
+                //TODO Add other settings
 
                 return appSettings.IsValid() ? appSettings : null;
             }
@@ -58,14 +63,12 @@ namespace Tasker.Utils
             return null;
         }
 
-        public bool RemoveSettings()
+        public bool SaveCredentials(string username, string token)
         {
-            var res = _settings.Remove(SettingsKey);
-            _settings.Save();
-            return res;
+            return SaveSetting(username, UsernameKey, true) && SaveSetting(token, AccessTokenKey, true);
         }
 
-        private bool SaveSetting(string value, string name, bool isProtected)
+        public bool SaveSetting(string value, string name, bool isProtected)
         {
             try
             {
@@ -78,6 +81,13 @@ namespace Tasker.Utils
             }
 
             return false;
+        }
+
+        public bool RemoveSettings()
+        {
+            var result = _settings.Remove(SettingsKey);
+            _settings.Save();
+            return result;
         }
 
         private string GetProtectedDataString(string unprotectedData)
@@ -95,5 +105,6 @@ namespace Tasker.Utils
 
             return Encoding.UTF8.GetString(unprotectedBytes, 0, unprotectedBytes.Length);
         }
+
     }
 }

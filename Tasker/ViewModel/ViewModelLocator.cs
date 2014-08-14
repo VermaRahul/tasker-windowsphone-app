@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GalaSoft.MvvmLight.Ioc;
+using Tasker.PCL.Utils;
+using Tasker.Utils;
 
 namespace Tasker.ViewModel
 {
     public class ViewModelLocator : Tasker.PCL.ViewModel.ViewModelLocator
     {
+        public ViewModelLocator()
+        {
+            SimpleIoc.Default.Register<ISettingsManager, SettingsManager>();
+        }
     }
 }
