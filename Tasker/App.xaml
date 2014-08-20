@@ -8,7 +8,9 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vmPCL="clr-namespace:Tasker.PCL.ViewModel;assembly=Tasker.PCL"
              xmlns:resources="clr-namespace:Tasker.Resources"
-             xmlns:vm="clr-namespace:Tasker.ViewModel">
+             xmlns:vm="clr-namespace:Tasker.ViewModel"
+             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+
     <!--Application Resources-->
     <Application.Resources>
         <resources:LocalizedStrings x:Key="LocalizedStrings" />
