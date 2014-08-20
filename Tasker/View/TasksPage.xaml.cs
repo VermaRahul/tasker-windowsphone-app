@@ -10,7 +10,7 @@ using Microsoft.Phone.Shell;
 
 namespace Tasker.View
 {
-    public partial class TasksPage : PhoneApplicationPage
+    public partial class TasksPage : AppPage
     {
         public TasksPage()
         {

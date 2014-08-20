@@ -2,7 +2,7 @@
 
 namespace Tasker.View
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage
     {
         // Constructor
         public MainPage()
