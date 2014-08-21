@@ -1,32 +1,63 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
+using Tasker.PCL.ViewModel;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Tasker.View
 {
-    public partial class MainPage
+    public partial class MainPage : AppPage
     {
-        // Constructor
+        private MainViewModel _vm;
+
         public MainPage()
         {
             InitializeComponent();
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            _vm = DataContext as MainViewModel;
+        }
 
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            if(_vm == null)
+                return;
 
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+            _vm.PropertyChanged -= OnPropertyChanged;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_vm == null)
+                return;
+
+            _vm.PropertyChanged += OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (_vm == null)
+                return;
+
+            if (e.PropertyName == MainViewModel.FileContentPropertyName)
+            {
+                
+            }
+        }
+
+        private void SaveButton_OnTap(object sender, GestureEventArgs e)
+        {
+            if(_vm == null)
+                return;
+
+            _vm.SaveTextCommand.Execute(InputBox.Text);
+        }
     }
 }

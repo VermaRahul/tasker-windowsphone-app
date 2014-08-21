@@ -1,15 +1,20 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using Tasker.PCL.Model;
+using Tasker.PCL.Utils;
 
 namespace Tasker.PCL.ViewModel
 {
     public class MainViewModel : AppViewModel
     {
-        public MainViewModel(AppContext context, INavigationService navigationService)
+        private readonly ISettingsManager _settingsManager;
+
+        public MainViewModel(AppContext context, INavigationService navigationService, ISettingsManager settingsManager)
             : base(context, navigationService)
         {
+            _settingsManager = settingsManager;
         }
 
         /// <summary>
@@ -17,6 +22,23 @@ namespace Tasker.PCL.ViewModel
         /// </summary>
 
         #region Properties
+
+        /// <summary>
+        /// The <see cref="FileContent" /> property's name.
+        /// </summary>
+        public const string FileContentPropertyName = "FileContent";
+
+        private string _fileContent = null;
+
+        /// <summary>
+        /// Sets and gets the FileContent property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string FileContent
+        {
+            get { return _fileContent; }
+            set { Set(FileContentPropertyName, ref _fileContent, value); }
+        }
 
         #endregion
 
@@ -36,9 +58,34 @@ namespace Tasker.PCL.ViewModel
             }
         }
 
-        private void ExecuteNavigateToTasksCommand()
+        private async void ExecuteNavigateToTasksCommand()
         {
+            await _settingsManager.WriteDataToFileAsync(AppUtils.LocalAppFileName, DateTime.Now.ToString());
+
+            FileContent = await _settingsManager.ReadFileContentsAsync(AppUtils.LocalAppFileName);
+
             NavigationService.NavigateTo<TasksViewModel>();
+        }
+
+        private RelayCommand<string> _saveTextCommand;
+
+        /// <summary>
+        /// Gets the SaveTextCommand.
+        /// </summary>
+        public RelayCommand<string> SaveTextCommand
+        {
+            get
+            {
+                return _saveTextCommand
+                    ?? (_saveTextCommand = new RelayCommand<string>(ExecuteSaveTextCommand));
+            }
+        }
+
+        private async void ExecuteSaveTextCommand(string parameter)
+        {
+            await _settingsManager.WriteDataToFileAsync(AppUtils.LocalAppFileName, DateTime.Now + " " + parameter);
+
+            FileContent = await _settingsManager.ReadFileContentsAsync(AppUtils.LocalAppFileName);
         }
 
         #endregion
