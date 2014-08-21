@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Tasker.PCL.Model;
 using Tasker.PCL.Utils;
 
@@ -18,6 +20,11 @@ namespace Tasker.Utils
         private const string SettingsKey = "Settings";
 
         private IsolatedStorageSettings _settings;
+
+        private StorageFolder _folder
+        {
+            get { return ApplicationData.Current.LocalFolder; }
+        }
 
         public SettingsManager()
         {
@@ -75,6 +82,35 @@ namespace Tasker.Utils
             }
 
             return null;
+        }
+
+        public virtual async Task WriteDataToFileAsync(string fileName, string value)
+        {
+            var data = Encoding.Unicode.GetBytes(value);
+
+            var file = await _folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+
+            using (var s = await file.OpenStreamForWriteAsync())
+            {
+                await s.WriteAsync(data, 0, data.Length);
+            }
+        }
+
+        public virtual async Task<string> ReadFileContentsAsync(string fileName)
+        {
+            try
+            {
+                var file = await _folder.OpenStreamForReadAsync(fileName);
+
+                using (var streamReader = new StreamReader(file, Encoding.Unicode))
+                {
+                    return streamReader.ReadToEnd();
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
         }
 
         private string GetProtectedDataString(string unprotectedData)
