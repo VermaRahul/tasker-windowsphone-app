@@ -1,0 +1,44 @@
+﻿<view:AppPage x:Class="Tasker.View.HomePage"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:view="clr-namespace:Tasker.View"
+              xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
+              xmlns:controls="clr-namespace:Tasker.Controls"
+              FontFamily="{StaticResource PhoneFontFamilyNormal}"
+              FontSize="{StaticResource PhoneFontSizeNormal}"
+              Foreground="{StaticResource PhoneForegroundBrush}"
+              SupportedOrientations="Portrait"
+              Orientation="Portrait"
+              mc:Ignorable="d"
+              shell:SystemTray.IsVisible="True"
+              shell:SystemTray.ForegroundColor="White"
+              shell:SystemTray.BackgroundColor="#FF283440"
+              DataContext="{Binding HomeViewModel, Source={StaticResource Locator}}">
+    <Grid x:Name="LayoutRoot"
+          Background="#FF283440">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--<TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="Tasker" FontSize="34.667" />-->
+        <controls:PageHeaderControl HorizontalAlignment="Left"
+                                    SelectedItem="{Binding SelectedItem, ElementName=ContentPivot}" Width="460" Margin="10,0"/>
+        <Grid Grid.Row="1" Background="#FF222C38">
+            <phone:Pivot x:Name="ContentPivot"
+                         Style="{StaticResource HomePivotStyle}">
+				<phone:PivotItem Header="Tasks"
+								 Style="{StaticResource PivotItemStyle}">
+					<Grid Background="Blue" />
+				</phone:PivotItem>
+				<phone:PivotItem Header="Categories"
+								 Style="{StaticResource PivotItemStyle}">
+					<Grid Background="Brown" />
+				</phone:PivotItem>
+			</phone:Pivot>
+		</Grid>
+    </Grid>
+</view:AppPage>

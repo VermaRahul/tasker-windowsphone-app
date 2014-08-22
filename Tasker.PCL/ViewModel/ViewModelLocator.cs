@@ -13,12 +13,18 @@ namespace Tasker.PCL.ViewModel
             SimpleIoc.Default.Register<AppContext>();
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<TasksViewModel>();
         }
 
         public MainViewModel MainViewModel
         {
             get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
+        }
+
+        public HomeViewModel HomeViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<HomeViewModel>(); }
         }
 
         public TasksViewModel TasksViewModel
