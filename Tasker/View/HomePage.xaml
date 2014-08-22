@@ -15,19 +15,21 @@
               Orientation="Portrait"
               mc:Ignorable="d"
               shell:SystemTray.IsVisible="True"
-              shell:SystemTray.ForegroundColor="White"
-              shell:SystemTray.BackgroundColor="#FF283440"
+              shell:SystemTray.Opacity="0.001"
+              shell:SystemTray.ForegroundColor="#FEFFFFFF"
+              shell:SystemTray.BackgroundColor="{StaticResource PageHeaderBackgroundColor}"
               DataContext="{Binding HomeViewModel, Source={StaticResource Locator}}">
     <Grid x:Name="LayoutRoot"
-          Background="#FF283440">
+          Background="{StaticResource PageHeaderBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!--<TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="Tasker" FontSize="34.667" />-->
         <controls:PageHeaderControl HorizontalAlignment="Left"
-                                    SelectedItem="{Binding SelectedItem, ElementName=ContentPivot}" Width="460" Margin="10,0"/>
-        <Grid Grid.Row="1" Background="#FF222C38">
+                                    SelectedItem="{Binding SelectedItem, ElementName=ContentPivot}"/>
+        <Grid Grid.Row="1"
+              Background="{StaticResource PageContentBackgroundBrush}">
             <phone:Pivot x:Name="ContentPivot"
                          Style="{StaticResource HomePivotStyle}">
 				<phone:PivotItem Header="Tasks"

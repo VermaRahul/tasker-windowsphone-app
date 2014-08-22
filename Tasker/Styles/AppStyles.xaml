@@ -3,6 +3,16 @@
                     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone">
     
+<!--    Colors-->
+    <Color x:Key="PageHeaderBackgroundColor">#FF283440</Color>
+    <Color x:Key="PageContentBackgroundColor">#FF222C38</Color>
+<!--    Brushes-->
+    <SolidColorBrush x:Key="PageHeaderBackgroundBrush"
+                     Color="{StaticResource PageHeaderBackgroundColor}"></SolidColorBrush>
+    
+    <SolidColorBrush x:Key="PageContentBackgroundBrush"
+                     Color="{StaticResource PageContentBackgroundColor}"></SolidColorBrush>
+<!--    Pivot Styles-->
     <Style x:Key="HomePivotStyle"
            TargetType="phone:Pivot">
         <Setter Property="Margin"

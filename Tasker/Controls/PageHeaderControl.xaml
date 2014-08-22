@@ -10,7 +10,9 @@
              d:DesignHeight="480"
              d:DesignWidth="480">
     <Grid x:Name="TitleBar"
-          Background="Transparent">
+          Background="Transparent"
+          Width="460"
+          Margin="10,32,10,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />

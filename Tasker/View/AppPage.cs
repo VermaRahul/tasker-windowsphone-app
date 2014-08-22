@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Logging;
+using Microsoft.Phone.Shell;
 using Tasker.Extensions;
 using Tasker.PCL.ViewModel;
 
