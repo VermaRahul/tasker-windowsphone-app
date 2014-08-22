@@ -6,13 +6,17 @@
 <!--    Colors-->
     <Color x:Key="PageHeaderBackgroundColor">#FF283440</Color>
     <Color x:Key="PageContentBackgroundColor">#FF222C38</Color>
+    <Color x:Key="AppGrayColor">Gray</Color>
 <!--    Brushes-->
     <SolidColorBrush x:Key="PageHeaderBackgroundBrush"
                      Color="{StaticResource PageHeaderBackgroundColor}"></SolidColorBrush>
     
     <SolidColorBrush x:Key="PageContentBackgroundBrush"
                      Color="{StaticResource PageContentBackgroundColor}"></SolidColorBrush>
-<!--    Pivot Styles-->
+    
+    <SolidColorBrush x:Key="AppGrayBrush"
+                     Color="{StaticResource AppGrayColor}"></SolidColorBrush>
+    <!--    Pivot Styles-->
     <Style x:Key="HomePivotStyle"
            TargetType="phone:Pivot">
         <Setter Property="Margin"
@@ -85,6 +89,83 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="PlainButtonStyle"
+           TargetType="Button">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Border"
+                            BorderThickness="0"
+                            Background="{TemplateBinding Background}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <ContentControl x:Name="ContentPresenter"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ImageButtonStyle"
+           BasedOn="{StaticResource PlainButtonStyle}"
+           TargetType="Button">
+        <Setter Property="Padding"
+                Value="10" />
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                       Storyboard.TargetName="Border">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{StaticResource AppGrayBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Border"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <ContentControl x:Name="ContentPresenter"
+                                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                                            Content="{TemplateBinding Content}"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            Margin="{TemplateBinding Padding}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

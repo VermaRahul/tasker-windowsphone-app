@@ -36,6 +36,22 @@ namespace Tasker.Controls
                 return;
 
             header.TitleTextBlock.Text = ((PivotItem)e.NewValue).Header as string;
+
+            if (header.TitleTextBlock.Text != null && header.TitleTextBlock.Text.ToLower() == "tasks")
+            {
+                header.AddTaskButton.Visibility = Visibility.Visible;
+                header.AddCategoryButton.Visibility = Visibility.Collapsed;
+            }
+            else if (header.TitleTextBlock.Text != null && header.TitleTextBlock.Text.ToLower() == "categories")
+            {
+                header.AddTaskButton.Visibility = Visibility.Collapsed;
+                header.AddCategoryButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                header.AddTaskButton.Visibility = Visibility.Collapsed;
+                header.AddCategoryButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
