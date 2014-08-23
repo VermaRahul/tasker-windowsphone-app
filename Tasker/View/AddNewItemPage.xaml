@@ -31,14 +31,21 @@
                     Background="{StaticResource PageContentBackgroundBrush}"
                     Grid.Row="1">
             <toolkit:PhoneTextBox Hint="Title"
-                                  Margin="12,24,12,6" />
+                                  Margin="12,24,12,6"
+                                  InputScope="Text"/>
             <toolkit:PhoneTextBox Hint="Description"
                                   Margin="12,6,12,24"
                                   TextWrapping="Wrap"
+                                  Visibility="{Binding PageItemType,Converter={StaticResource IsTaskComponentToVisibilityConverter}}"
                                   AcceptsReturn="True"
-                                  MaxHeight="370"/>
-            <TextBlock Text="Date" Margin="22,0"/>
-            <toolkit:DatePicker Background="{StaticResource PageContentBackgroundBrush}" Margin="12,0"/>
+                                  MaxHeight="370"
+                                  InputScope="Text"/>
+            <TextBlock Text="Date"
+                       Margin="22,0"
+                       Visibility="{Binding PageItemType,Converter={StaticResource IsTaskComponentToVisibilityConverter}}" />
+            <toolkit:DatePicker Background="{StaticResource PageContentBackgroundBrush}"
+                                Margin="12,0"
+                                Visibility="{Binding PageItemType,Converter={StaticResource IsTaskComponentToVisibilityConverter}}" />
         </StackPanel>
     </Grid>
 </view:AppPage>

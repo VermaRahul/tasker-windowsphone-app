@@ -44,7 +44,7 @@ namespace Tasker.PCL.ViewModel
                     NavigationService.NavigateTo<AddNewItemViewModel>(type);
                     break;
                 case ObjectType.Category:
-                    NavigationService.NavigateTo<MainViewModel>();
+                    NavigationService.NavigateTo<AddNewItemViewModel>(type);
                     break;
             }
         }

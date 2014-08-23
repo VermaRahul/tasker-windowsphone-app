@@ -33,6 +33,8 @@ namespace Tasker.PCL.ViewModel
             {
                 PageTitle = "New Category";
             }
+            PageItemType = type;
+
         }
 
         #region Properties
@@ -52,6 +54,23 @@ namespace Tasker.PCL.ViewModel
         {
             get { return _pageTitle; }
             set { Set(PageTitlePropertyName, ref _pageTitle, value); }
+        }
+
+        /// <summary>
+        /// The <see cref="PageItemType" /> property's name.
+        /// </summary>
+        public const string PageItemTypePropertyName = "PageItemType";
+
+        private ObjectType _pageItemType = ObjectType.Empty;
+
+        /// <summary>
+        /// Sets and gets the PageItemType property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public ObjectType PageItemType
+        {
+            get { return _pageItemType; }
+            set { Set(PageItemTypePropertyName, ref _pageItemType, value); }
         }
 
         #endregion
