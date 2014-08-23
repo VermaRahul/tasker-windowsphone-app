@@ -23,7 +23,7 @@ namespace Tasker.PCL.ViewModel
         {
         }
 
-        public virtual void SetData(object context)
+        public virtual void SetData(object content)
         {
         }
 
