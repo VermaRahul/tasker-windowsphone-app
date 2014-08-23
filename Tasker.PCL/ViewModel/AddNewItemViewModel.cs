@@ -27,12 +27,33 @@ namespace Tasker.PCL.ViewModel
 
             if (type == ObjectType.Task)
             {
-                var a = 1;
+                PageTitle = "New Task";
             }
             else if (type == ObjectType.Category)
             {
-                var a = 2;
+                PageTitle = "New Category";
             }
         }
+
+        #region Properties
+
+        /// <summary>
+        /// The <see cref="PageTitle" /> property's name.
+        /// </summary>
+        public const string PageTitlePropertyName = "PageTitle";
+
+        private string _pageTitle = null;
+
+        /// <summary>
+        /// Sets and gets the PageTitle property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string PageTitle
+        {
+            get { return _pageTitle; }
+            set { Set(PageTitlePropertyName, ref _pageTitle, value); }
+        }
+
+        #endregion
     }
 }

@@ -41,11 +41,9 @@ namespace Tasker.PCL.ViewModel
             switch (type)
             {
                 case ObjectType.Task:
-                    a = 1;
                     NavigationService.NavigateTo<AddNewItemViewModel>(type);
                     break;
                 case ObjectType.Category:
-                    a = 2;
                     NavigationService.NavigateTo<MainViewModel>();
                     break;
             }

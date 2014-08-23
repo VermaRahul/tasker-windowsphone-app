@@ -35,26 +35,43 @@ namespace Tasker.Controls
         private static void OnSelectedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var header = d as PageHeaderControl;
-            if(header == null)
+            if(header == null || !(e.NewValue is PivotItem))
                 return;
 
             header.TitleTextBlock.Text = ((PivotItem)e.NewValue).Header as string;
 
             if (header.TitleTextBlock.Text != null && header.TitleTextBlock.Text.ToLower() == "tasks")
             {
-                header.AddTaskButton.Visibility = Visibility.Visible;
-                header.AddCategoryButton.Visibility = Visibility.Collapsed;
+                SwitchButtonsVisibility(header, Visibility.Visible, Visibility.Collapsed);
             }
             else if (header.TitleTextBlock.Text != null && header.TitleTextBlock.Text.ToLower() == "categories")
             {
-                header.AddTaskButton.Visibility = Visibility.Collapsed;
-                header.AddCategoryButton.Visibility = Visibility.Visible;
+                SwitchButtonsVisibility(header, Visibility.Collapsed, Visibility.Visible);
             }
             else
             {
-                header.AddTaskButton.Visibility = Visibility.Collapsed;
-                header.AddCategoryButton.Visibility = Visibility.Collapsed;
+                SwitchButtonsVisibility(header, Visibility.Collapsed, Visibility.Collapsed);
             }
+        }
+
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(PageHeaderControl), new PropertyMetadata(null, OnHeaderTitleChangedCallback));
+
+        private static void OnHeaderTitleChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var header = d as PageHeaderControl;
+            if (header == null)
+                return;
+
+            SwitchButtonsVisibility(header, Visibility.Collapsed, Visibility.Collapsed);
+            header.TitleTextBlock.Text = e.NewValue as string;
         }
 
         #endregion
@@ -85,6 +102,16 @@ namespace Tasker.Controls
         {
             if (AddButtonPressedCommand != null)
                 AddButtonPressedCommand.Execute(ObjectType.Category);
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        private static void SwitchButtonsVisibility(PageHeaderControl header, Visibility addTaskButtonVisibility, Visibility addCategoryButtonVisibility)
+        {
+            header.AddTaskButton.Visibility = addTaskButtonVisibility;
+            header.AddCategoryButton.Visibility = addCategoryButtonVisibility;
         }
 
         #endregion
