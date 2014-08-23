@@ -97,6 +97,8 @@
     <Compile Include="Controls\PageHeaderControl.xaml.cs">
       <DependentUpon>PageHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\IsTaskComponentConverter.cs" />
     <Compile Include="Extensions\FrameExtension.cs" />
     <Compile Include="Resources\LocalizedStrings.cs" />
     <Compile Include="Utils\SettingsManager.cs" />

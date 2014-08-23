@@ -9,7 +9,8 @@
              xmlns:vmPCL="clr-namespace:Tasker.PCL.ViewModel;assembly=Tasker.PCL"
              xmlns:resources="clr-namespace:Tasker.Resources"
              xmlns:vm="clr-namespace:Tasker.ViewModel"
-             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+             xmlns:converters="clr-namespace:Tasker.Converters">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -20,7 +21,9 @@
     		<resources:LocalizedStrings x:Key="LocalizedStrings" />
     		<vm:ViewModelLocator x:Key="Locator"
     			d:IsDataSource="True" />
-    	</ResourceDictionary>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:IsTaskComponentConverter x:Key="IsTaskComponentToVisibilityConverter" />
+        </ResourceDictionary>
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->
