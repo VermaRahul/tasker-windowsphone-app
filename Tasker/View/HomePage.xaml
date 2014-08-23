@@ -16,7 +16,7 @@
               mc:Ignorable="d"
               shell:SystemTray.IsVisible="True"
               shell:SystemTray.Opacity="0.001"
-              shell:SystemTray.ForegroundColor="#FEFFFFFF"
+              shell:SystemTray.ForegroundColor="{StaticResource SystemTrayForegroundColor}"
               shell:SystemTray.BackgroundColor="{StaticResource PageHeaderBackgroundColor}"
               DataContext="{Binding HomeViewModel, Source={StaticResource Locator}}">
     <Grid x:Name="LayoutRoot"

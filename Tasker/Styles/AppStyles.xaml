@@ -4,6 +4,7 @@
                     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone">
     
 <!--    Colors-->
+    <Color x:Key="SystemTrayForegroundColor">#FEFFFFFF</Color>
     <Color x:Key="PageHeaderBackgroundColor">#FF283440</Color>
     <Color x:Key="PageContentBackgroundColor">#FF222C38</Color>
     <Color x:Key="AppGrayColor">Gray</Color>
