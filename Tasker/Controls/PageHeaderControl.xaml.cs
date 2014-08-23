@@ -5,8 +5,11 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Tasker.PCL.Enumerations;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace Tasker.Controls
 {
@@ -17,7 +20,7 @@ namespace Tasker.Controls
             InitializeComponent();
         }
 
-
+        #region Properties
 
         public PivotItem SelectedItem
         {
@@ -53,5 +56,37 @@ namespace Tasker.Controls
                 header.AddCategoryButton.Visibility = Visibility.Collapsed;
             }
         }
+
+        #endregion
+
+        #region Commands
+
+        public RelayCommand<ObjectType> AddButtonPressedCommand
+        {
+            get { return (RelayCommand<ObjectType>)GetValue(AddButtonPressedCommandProperty); }
+            set { SetValue(AddButtonPressedCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AddButtonPressedCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AddButtonPressedCommandProperty =
+            DependencyProperty.Register("AddButtonPressedCommand", typeof(RelayCommand<ObjectType>), typeof(PageHeaderControl), new PropertyMetadata(null));
+
+        #endregion
+
+        #region Event Handlers
+
+        private void AddTaskButton_OnTap(object sender, GestureEventArgs e)
+        {
+            if(AddButtonPressedCommand != null)
+                AddButtonPressedCommand.Execute(ObjectType.Task);
+        }
+
+        private void AddCategoryButton_OnTap(object sender, GestureEventArgs e)
+        {
+            if (AddButtonPressedCommand != null)
+                AddButtonPressedCommand.Execute(ObjectType.Category);
+        }
+
+        #endregion
     }
 }

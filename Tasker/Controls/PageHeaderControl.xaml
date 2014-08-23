@@ -23,6 +23,7 @@
         <Button x:Name="AddTaskButton"
                 Grid.Column="1"
                 Visibility="Collapsed"
+                Tap="AddTaskButton_OnTap"
                 Style="{StaticResource ImageButtonStyle}">
             <Viewbox Stretch="Uniform"
                      Width="32"
@@ -34,6 +35,7 @@
         <Button x:Name="AddCategoryButton"
                 Grid.Column="1"
                 Visibility="Collapsed"
+                Tap="AddCategoryButton_OnTap"
                 Style="{StaticResource ImageButtonStyle}">
             <Viewbox Stretch="Uniform"
                      Width="32"

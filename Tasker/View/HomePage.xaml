@@ -27,7 +27,8 @@
         </Grid.RowDefinitions>
         <!--<TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="Tasker" FontSize="34.667" />-->
         <controls:PageHeaderControl HorizontalAlignment="Left"
-                                    SelectedItem="{Binding SelectedItem, ElementName=ContentPivot}"/>
+                                    SelectedItem="{Binding SelectedItem, ElementName=ContentPivot}"
+                                    AddButtonPressedCommand="{Binding AddNewButtonPressedCommand}"/>
         <Grid Grid.Row="1"
               Background="{StaticResource PageContentBackgroundBrush}">
             <phone:Pivot x:Name="ContentPivot"
