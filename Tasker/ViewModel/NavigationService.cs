@@ -18,12 +18,16 @@ namespace Tasker.ViewModel
         {
             Register(typeof(MainViewModel), PageId.Main);
             Register(typeof(TasksViewModel), PageId.Tasks);
+            Register(typeof(HomeViewModel), PageId.Home);
+            Register(typeof(AddNewItemViewModel), PageId.AddNew);
         }
 
         public enum PageId
         {
             Main,
-            Tasks
+            Tasks,
+            Home,
+            AddNew
         }
 
         public override void GoBack(object data)
@@ -90,8 +94,14 @@ namespace Tasker.ViewModel
                 case PageId.Tasks:
                     pageUri = "/View/TasksPage.xaml";
                     break;
+                case PageId.Home:
+                    pageUri = "/View/HomePage.xaml";
+                    break;
+                case PageId.AddNew:
+                    pageUri = "/View/AddNewItemPage.xaml";
+                    break;
                 default:
-                    pageUri = "/View/MainPage.xaml";
+                    pageUri = "/View/HomePage.xaml";
                     break;
             }
             ((PhoneApplicationFrame)Application.Current.RootVisual).Navigate(new Uri(pageUri, UriKind.Relative), data);
