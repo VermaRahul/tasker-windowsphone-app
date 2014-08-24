@@ -8,6 +8,7 @@
               xmlns:view="clr-namespace:Tasker.View"
               xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
               xmlns:controls="clr-namespace:Tasker.Controls"
+              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
               FontFamily="{StaticResource PhoneFontFamilyNormal}"
               FontSize="{StaticResource PhoneFontSizeNormal}"
               Foreground="{StaticResource PhoneForegroundBrush}"
@@ -39,7 +40,33 @@
 				</phone:PivotItem>
 				<phone:PivotItem Header="Categories"
 								 Style="{StaticResource PivotItemStyle}">
-					<Grid Background="Brown" />
+<!--					<Grid Background="Brown" />-->
+                    <Grid >
+                        <phone:LongListSelector x:Name="CategoriesLongListSelector"
+                                                toolkit:TiltEffect.IsTiltEnabled="True"
+                                                ItemsSource="{Binding Categories}">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="Transparent"
+                                        Padding="18,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Name}"
+                                                       FontSize="36"
+                                                       Foreground="White"
+                                                       VerticalAlignment="Center"
+                                                       FontWeight="Bold" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                                
+                            </phone:LongListSelector.ItemTemplate>
+                            
+                        </phone:LongListSelector>
+                    </Grid>
 				</phone:PivotItem>
 			</phone:Pivot>
 		</Grid>

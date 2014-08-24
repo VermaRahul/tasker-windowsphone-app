@@ -20,8 +20,6 @@ namespace Tasker.View
         public AppPage()
         {
             InitAnimation();
-            Loaded += OnLoaded;
-            Unloaded += OnUnloaded;
         }
 
         private void InitAnimation()
@@ -48,7 +46,18 @@ namespace Tasker.View
             var vm = DataContext as AppViewModel;
             if (vm != null)
             {
+                vm.OnError += OnError;
                 vm.SetData(data);
+            }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            var vm = DataContext as AppViewModel;
+            if (vm != null)
+            {
+                vm.OnError -= OnError;
             }
         }
 
@@ -62,33 +71,13 @@ namespace Tasker.View
             base.OnRemovedFromJournal(e);
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            var vm = DataContext as AppViewModel;
-
-            if (vm == null)
-                return;
-
-            vm.OnError += OnError;
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            var vm = DataContext as AppViewModel;
-
-            if (vm == null)
-                return;
-
-            vm.OnError -= OnError;
-        }
-
         private void OnError(object sender, AppError error)
         {
             RunOnUiThread(() =>
             {
                 if (error == null || string.IsNullOrEmpty(error.Message)) return;
 
-                var result = MessageBox.Show(error.Title, error.Message, MessageBoxButton.OK);
+                var result = MessageBox.Show(error.Message, error.Title, MessageBoxButton.OK);
 
             });
         }

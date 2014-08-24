@@ -20,6 +20,19 @@
               shell:SystemTray.ForegroundColor="{StaticResource SystemTrayForegroundColor}"
               shell:SystemTray.BackgroundColor="{StaticResource PageHeaderBackgroundColor}"
               DataContext="{Binding AddNewItemViewModel, Source={StaticResource Locator}}">
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              BackgroundColor="{StaticResource PageHeaderBackgroundColor}"
+                              ForegroundColor="White">
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/ApplicationBar.Save.png"
+                                            Text="SAVE"
+                                            Click="SaveButtonOnClick"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/ApplicationBar.Cancel.png"
+                                            Text="CANCEL" 
+                                            Click="CancelButtonOnClick"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource PageHeaderBackgroundBrush}">
         <Grid.RowDefinitions>
@@ -30,7 +43,8 @@
         <StackPanel x:Name="ContentStackPanel"
                     Background="{StaticResource PageContentBackgroundBrush}"
                     Grid.Row="1">
-            <toolkit:PhoneTextBox Hint="Title"
+            <toolkit:PhoneTextBox x:Name="ItemTitleTextBox"
+                                  Hint="Title"
                                   Margin="12,24,12,6"
                                   InputScope="Text"/>
             <toolkit:PhoneTextBox Hint="Description"
