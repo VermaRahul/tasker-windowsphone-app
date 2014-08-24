@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using Newtonsoft.Json;
 using Tasker.PCL.Enumerations;
 using Tasker.PCL.Model;
 using Tasker.PCL.Utils;
