@@ -7,7 +7,9 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
+using Newtonsoft.Json;
 using Tasker.PCL.Model;
 using Tasker.PCL.Utils;
 
@@ -100,16 +102,51 @@ namespace Tasker.Utils
         {
             try
             {
-                var file = await _folder.OpenStreamForReadAsync(fileName);
-
-                using (var streamReader = new StreamReader(file, Encoding.Unicode))
+                using (var file = await _folder.OpenStreamForReadAsync(fileName))
                 {
-                    return streamReader.ReadToEnd();
+                    using (var streamReader = new StreamReader(file, Encoding.Unicode))
+                    {
+                        return streamReader.ReadToEnd();
+                    }
                 }
             }
             catch (Exception)
             {
                 return string.Empty;
+            }
+        }
+
+        public virtual async Task<T> ReadJsonDataFileAsync<T>(string fileName)
+        {
+            try
+            {
+                using (var file = await _folder.OpenStreamForReadAsync(fileName))
+                {
+                    using (var jsonStreamReader = new JsonTextReader(new StreamReader(file)))
+                    {
+                        var serializer = new JsonSerializer();
+                        return serializer.Deserialize<T>(jsonStreamReader);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return default(T);
+            }
+        }
+
+        public virtual async Task WriteJsonDataToFileAsync(string fileName, JsonData data)
+        {
+
+            var file = await _folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+
+            using (var s = await file.OpenStreamForWriteAsync())
+            {
+                var serializer = new JsonSerializer();
+                using (var writer = new StreamWriter(s))
+                {
+                    serializer.Serialize(writer, data);
+                }
             }
         }
 

@@ -14,5 +14,8 @@ namespace Tasker.PCL.Utils
 
         Task WriteDataToFileAsync(string fileName, string value);
         Task<string> ReadFileContentsAsync(string fileName);
+
+        Task WriteJsonDataToFileAsync(string fileName, JsonData data);
+        Task<T> ReadJsonDataFileAsync<T>(string fileName);
     }
 }
