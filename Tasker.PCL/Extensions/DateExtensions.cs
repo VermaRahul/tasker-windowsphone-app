@@ -30,7 +30,13 @@ namespace Tasker.PCL.Extensions
 
         public static string GetTimeFrameString(this DateTime date)
         {
-            switch (date.GetTimeFrame())
+            var a = date.GetTimeFrame();
+            return GetEnumAsString(a);
+        }
+
+        public static string GetEnumAsString(TimeFrame a)
+        {
+            switch (a)
             {
                 case TimeFrame.Unknown:
                     return "Unknown";

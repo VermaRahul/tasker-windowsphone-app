@@ -2,10 +2,10 @@
 {
     public enum TimeFrame
     {
-        Unknown,
-        Today,
-        Tomorrow,
-        Later,
-        Overdue
+        Unknown = 0,
+        Overdue = 1,
+        Today = 2,
+        Tomorrow = 3,
+        Later = 4,
     }
 }
