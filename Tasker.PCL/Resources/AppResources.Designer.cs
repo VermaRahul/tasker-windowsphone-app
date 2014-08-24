@@ -98,7 +98,7 @@ namespace Tasker.PCL.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tasks.
+        ///   Looks up a localized string similar to Events.
         /// </summary>
         public static string MainPage_Tasks {
             get {

@@ -34,7 +34,7 @@
               Background="{StaticResource PageContentBackgroundBrush}">
             <phone:Pivot x:Name="ContentPivot"
                          Style="{StaticResource HomePivotStyle}">
-				<phone:PivotItem Header="Tasks"
+				<phone:PivotItem Header="Events"
 								 Style="{StaticResource PivotItemStyle}">
 					<Grid Background="Blue" />
 				</phone:PivotItem>

@@ -14,14 +14,6 @@ namespace Tasker.PCL.ViewModel
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<AddNewItemViewModel>();
 
-
-            SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<TasksViewModel>();
-        }
-
-        public MainViewModel MainViewModel
-        {
-            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
 
         public HomeViewModel HomeViewModel
@@ -32,11 +24,6 @@ namespace Tasker.PCL.ViewModel
         public AddNewItemViewModel AddNewItemViewModel
         {
             get { return ServiceLocator.Current.GetInstance<AddNewItemViewModel>(); }
-        }
-
-        public TasksViewModel TasksViewModel
-        {
-            get { return ServiceLocator.Current.GetInstance<TasksViewModel>(); }
         }
 
         public static void Cleanup()

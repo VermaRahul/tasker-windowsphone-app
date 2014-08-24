@@ -138,7 +138,7 @@
     <value>home</value>
   </data>
   <data name="MainPage_Tasks" xml:space="preserve">
-    <value>Tasks</value>
+    <value>Events</value>
   </data>
   <data name="AppBarButtonText" xml:space="preserve">
     <value>add</value>

@@ -3,7 +3,7 @@
     public enum ObjectType
     {
         Empty,
-        Task,
+        Event,
         Category
     }
 }

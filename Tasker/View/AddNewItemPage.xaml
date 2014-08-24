@@ -47,19 +47,21 @@
                                   Hint="Title"
                                   Margin="12,24,12,6"
                                   InputScope="Text"/>
-            <toolkit:PhoneTextBox Hint="Description"
+            <toolkit:PhoneTextBox x:Name="DescriptionTextBox"
+                                  Hint="Description"
                                   Margin="12,6,12,24"
                                   TextWrapping="Wrap"
-                                  Visibility="{Binding PageItemType,Converter={StaticResource IsTaskComponentToVisibilityConverter}}"
+                                  Visibility="{Binding PageItemType,Converter={StaticResource IsEventComponentToVisibilityConverter}}"
                                   AcceptsReturn="True"
                                   MaxHeight="370"
                                   InputScope="Text"/>
             <TextBlock Text="Date"
                        Margin="22,0"
-                       Visibility="{Binding PageItemType,Converter={StaticResource IsTaskComponentToVisibilityConverter}}" />
-            <toolkit:DatePicker Background="{StaticResource PageContentBackgroundBrush}"
+                       Visibility="{Binding PageItemType,Converter={StaticResource IsEventComponentToVisibilityConverter}}" />
+            <toolkit:DatePicker x:Name="DatePickerControl"
+                                Background="{StaticResource PageContentBackgroundBrush}"
                                 Margin="12,0"
-                                Visibility="{Binding PageItemType,Converter={StaticResource IsTaskComponentToVisibilityConverter}}" />
+                                Visibility="{Binding PageItemType,Converter={StaticResource IsEventComponentToVisibilityConverter}}" />
         </StackPanel>
     </Grid>
 </view:AppPage>

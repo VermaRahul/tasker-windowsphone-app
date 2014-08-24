@@ -79,7 +79,7 @@ namespace Tasker.PCL.ViewModel
             int a;
             switch (type)
             {
-                case ObjectType.Task:
+                case ObjectType.Event:
                     NavigationService.NavigateTo<AddNewItemViewModel>(type);
                     break;
                 case ObjectType.Category:

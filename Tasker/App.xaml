@@ -22,7 +22,7 @@
     		<vm:ViewModelLocator x:Key="Locator"
     			d:IsDataSource="True" />
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-            <converters:IsTaskComponentConverter x:Key="IsTaskComponentToVisibilityConverter" />
+            <converters:IsEventComponentConverter x:Key="IsEventComponentToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>

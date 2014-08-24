@@ -20,10 +20,10 @@
         <TextBlock Style="{StaticResource PhoneTextLargeStyle}"
                    x:Name="TitleTextBlock"
                    FontSize="34.667" />
-        <Button x:Name="AddTaskButton"
+        <Button x:Name="AddEventButton"
                 Grid.Column="1"
                 Visibility="Collapsed"
-                Tap="AddTaskButton_OnTap"
+                Tap="AddEventButton_OnTap"
                 Style="{StaticResource ImageButtonStyle}">
             <Viewbox Stretch="Uniform"
                      Width="32"

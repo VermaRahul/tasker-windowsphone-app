@@ -16,16 +16,12 @@ namespace Tasker.ViewModel
     {
         public NavigationService()
         {
-            Register(typeof(MainViewModel), PageId.Main);
-            Register(typeof(TasksViewModel), PageId.Tasks);
             Register(typeof(HomeViewModel), PageId.Home);
             Register(typeof(AddNewItemViewModel), PageId.AddNew);
         }
 
         public enum PageId
         {
-            Main,
-            Tasks,
             Home,
             AddNew
         }
@@ -88,12 +84,6 @@ namespace Tasker.ViewModel
             string pageUri;
             switch (id)
             {
-                case PageId.Main:
-                    pageUri = "/View/MainPage.xaml";
-                    break;
-                case PageId.Tasks:
-                    pageUri = "/View/TasksPage.xaml";
-                    break;
                 case PageId.Home:
                     pageUri = "/View/HomePage.xaml";
                     break;

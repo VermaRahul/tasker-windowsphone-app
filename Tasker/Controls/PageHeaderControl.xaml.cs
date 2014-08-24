@@ -40,7 +40,7 @@ namespace Tasker.Controls
 
             header.TitleTextBlock.Text = ((PivotItem)e.NewValue).Header as string;
 
-            if (header.TitleTextBlock.Text != null && header.TitleTextBlock.Text.ToLower() == "tasks")
+            if (header.TitleTextBlock.Text != null && header.TitleTextBlock.Text.ToLower() == "events")
             {
                 SwitchButtonsVisibility(header, Visibility.Visible, Visibility.Collapsed);
             }
@@ -92,10 +92,10 @@ namespace Tasker.Controls
 
         #region Event Handlers
 
-        private void AddTaskButton_OnTap(object sender, GestureEventArgs e)
+        private void AddEventButton_OnTap(object sender, GestureEventArgs e)
         {
             if(AddButtonPressedCommand != null)
-                AddButtonPressedCommand.Execute(ObjectType.Task);
+                AddButtonPressedCommand.Execute(ObjectType.Event);
         }
 
         private void AddCategoryButton_OnTap(object sender, GestureEventArgs e)
@@ -108,9 +108,9 @@ namespace Tasker.Controls
 
         #region Helper Methods
 
-        private static void SwitchButtonsVisibility(PageHeaderControl header, Visibility addTaskButtonVisibility, Visibility addCategoryButtonVisibility)
+        private static void SwitchButtonsVisibility(PageHeaderControl header, Visibility addEventButtonVisibility, Visibility addCategoryButtonVisibility)
         {
-            header.AddTaskButton.Visibility = addTaskButtonVisibility;
+            header.AddEventButton.Visibility = addEventButtonVisibility;
             header.AddCategoryButton.Visibility = addCategoryButtonVisibility;
         }
 

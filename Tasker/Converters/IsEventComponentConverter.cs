@@ -10,11 +10,11 @@ using Tasker.PCL.Enumerations;
 
 namespace Tasker.Converters
 {
-    public class IsTaskComponentConverter : IValueConverter
+    public class IsEventComponentConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value is ObjectType && (ObjectType)value == ObjectType.Task) ? Visibility.Visible : Visibility.Collapsed;
+            return (value is ObjectType && (ObjectType)value == ObjectType.Event) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -25,9 +25,9 @@ namespace Tasker.PCL.ViewModel
 
             var type = (ObjectType) content;
 
-            if (type == ObjectType.Task)
+            if (type == ObjectType.Event)
             {
-                PageTitle = "New Task";
+                PageTitle = "New Event";
             }
             else if (type == ObjectType.Category)
             {
