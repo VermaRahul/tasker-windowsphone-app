@@ -20,6 +20,11 @@
               shell:SystemTray.ForegroundColor="{StaticResource SystemTrayForegroundColor}"
               shell:SystemTray.BackgroundColor="{StaticResource PageHeaderBackgroundColor}"
               DataContext="{Binding HomeViewModel, Source={StaticResource Locator}}">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="False"
+                                 IsVisible="{Binding IsLoading}"
+                                 Text="loading..." />
+    </shell:SystemTray.ProgressIndicator>
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource PageHeaderBackgroundBrush}">
         <Grid.RowDefinitions>
@@ -27,6 +32,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!--<TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="Tasker" FontSize="34.667" />-->
+        <ProgressBar IsIndeterminate="True"
+                     Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
+                     Foreground="White"
+                     VerticalAlignment="Top" />
         <controls:PageHeaderControl HorizontalAlignment="Left"
                                     SelectedItem="{Binding SelectedItem, ElementName=ContentPivot}"
                                     AddButtonPressedCommand="{Binding AddNewButtonPressedCommand}"/>
