@@ -20,6 +20,14 @@
               shell:SystemTray.ForegroundColor="{StaticResource SystemTrayForegroundColor}"
               shell:SystemTray.BackgroundColor="{StaticResource PageHeaderBackgroundColor}"
               DataContext="{Binding HomeViewModel, Source={StaticResource Locator}}">
+	<view:AppPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              BackgroundColor="{StaticResource PageHeaderBackgroundColor}"
+                              ForegroundColor="White">
+			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/ApplicationBar.Add.png" Text="new"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/ApplicationBar.List.Select.png" Text="select"/>
+		</shell:ApplicationBar>
+	</view:AppPage.ApplicationBar>
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="False"
                                  IsVisible="{Binding IsLoading}"
