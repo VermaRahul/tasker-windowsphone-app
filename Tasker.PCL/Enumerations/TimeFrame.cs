@@ -6,6 +6,6 @@
         Today,
         Tomorrow,
         Later,
-        Past
+        Overdue
     }
 }

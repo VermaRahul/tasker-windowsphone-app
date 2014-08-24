@@ -18,12 +18,6 @@ namespace Tasker.View
         public AddNewItemPage()
         {
             InitializeComponent();
-            Loaded += OnLoaded;
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            ItemTitleTextBox.Focus();
         }
 
         private void SaveButtonOnClick(object sender, EventArgs e)
@@ -35,7 +29,7 @@ namespace Tasker.View
             if (_vm.PageItemType == ObjectType.Category)
             {
                 if (string.IsNullOrEmpty(ItemTitleTextBox.Text))
-                    _vm.InvokeError("Enter something", "error");
+                    _vm.InvokeError("Enter title", "error");
                 else
                     _vm.NavigationService.GoBack(new Category {Name = ItemTitleTextBox.Text});
             }

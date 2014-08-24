@@ -25,7 +25,7 @@ namespace Tasker.PCL.Extensions
             if (date.CompareTo(tomorrow) > 0)
                 return TimeFrame.Later;
 
-            return TimeFrame.Past;
+            return TimeFrame.Overdue;
         }
 
         public static string GetTimeFrameString(this DateTime date)
@@ -33,19 +33,19 @@ namespace Tasker.PCL.Extensions
             switch (date.GetTimeFrame())
             {
                 case TimeFrame.Unknown:
-                    return "unknown";
+                    return "Unknown";
                     break;
                 case TimeFrame.Today:
-                    return "today";
+                    return "Today";
                     break;
                 case TimeFrame.Tomorrow:
-                    return "tomorrow";
+                    return "Tomorrow";
                     break;
                 case TimeFrame.Later:
-                    return "later";
+                    return "Later";
                     break;
-                case TimeFrame.Past:
-                    return "past";
+                case TimeFrame.Overdue:
+                    return "Overdue";
                     break;
             }
             return "unknown";
