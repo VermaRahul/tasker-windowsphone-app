@@ -100,13 +100,18 @@ namespace Tasker.PCL.ViewModel
         private void ExecuteAddNewCommand(ObjectType type)
         {
             int a;
+            var navData = new PageNavigationData
+            {
+                Mode = type,
+                Categories = AppData != null ? AppData.Categories : new List<Category>()
+            };
             switch (type)
             {
                 case ObjectType.Event:
-                    NavigationService.NavigateTo<AddNewItemViewModel>(type);
+                    NavigationService.NavigateTo<AddNewItemViewModel>(navData);
                     break;
                 case ObjectType.Category:
-                    NavigationService.NavigateTo<AddNewItemViewModel>(type);
+                    NavigationService.NavigateTo<AddNewItemViewModel>(navData);
                     break;
             }
         }

@@ -20,21 +20,25 @@ namespace Tasker.PCL.ViewModel
 
         public override void SetData(object content)
         {
-            if(!(content is ObjectType))
+            if (!(content is PageNavigationData))
                 return;
 
-            var type = (ObjectType) content;
+            var data = (PageNavigationData)content;
 
-            if (type == ObjectType.Event)
+            if (data.Mode == ObjectType.Event)
             {
                 PageTitle = "New Event";
             }
-            else if (type == ObjectType.Category)
+            else if (data.Mode == ObjectType.Category)
             {
                 PageTitle = "New Category";
             }
-            PageItemType = type;
+            PageItemType = data.Mode;
 
+            if (data.Categories == null)
+                return;
+
+            Categories = data.Categories;
         }
 
         #region Properties
@@ -73,6 +77,22 @@ namespace Tasker.PCL.ViewModel
             set { Set(PageItemTypePropertyName, ref _pageItemType, value); }
         }
 
+        /// <summary>
+        /// The <see cref="Categories" /> property's name.
+        /// </summary>
+        public const string CategoriesPropertyName = "Categories";
+
+        private List<Category> _categories = null;
+
+        /// <summary>
+        /// Sets and gets the Categories property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public List<Category> Categories
+        {
+            get { return _categories; }
+            set { Set(CategoriesPropertyName, ref _categories, value); }
+        }
         #endregion
     }
 }

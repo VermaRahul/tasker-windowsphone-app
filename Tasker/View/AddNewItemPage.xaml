@@ -48,20 +48,43 @@
                                   Margin="12,24,12,6"
                                   InputScope="Text" />
             <toolkit:SpeechTextBox x:Name="DescriptionTextBox"
-                                  Hint="Notes"
-                                  Margin="12,6,12,24"
-                                  TextWrapping="Wrap"
-                                  Visibility="{Binding PageItemType,Converter={StaticResource IsEventComponentToVisibilityConverter}}"
-                                  AcceptsReturn="True"
-                                  InputScope="Text"/>
-            <TextBlock Text="Date"
-                       Margin="22,0"
-                       Visibility="{Binding PageItemType,Converter={StaticResource IsEventComponentToVisibilityConverter}}" />
+                                   Hint="Notes"
+                                   Margin="12,6,12,24"
+                                   TextWrapping="Wrap"
+                                   Visibility="{Binding PageItemType,Converter={StaticResource IsEventComponentToVisibilityConverter}}"
+                                   AcceptsReturn="True"
+                                   InputScope="Text" />
             <toolkit:DatePicker x:Name="DatePickerControl"
+                                Header="Date"
                                 ValueChanged="DatePickerValueChanged"
                                 Background="{StaticResource PageContentBackgroundBrush}"
                                 Margin="12,0"
                                 Visibility="{Binding PageItemType,Converter={StaticResource IsEventComponentToVisibilityConverter}}" />
+            <toolkit:ListPicker ExpansionMode="FullScreenOnly"
+                                Header="Category"
+                                FullModeHeader="Category"
+                                Name="CategoryListPicker"
+                                Margin="24,0,24,0"
+                                ItemsSource="{Binding Categories}">
+                <toolkit:ListPicker.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </toolkit:ListPicker.ItemTemplate>
+                <toolkit:ListPicker.FullModeItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="16 21 0 20">
+                            <TextBlock Text="{Binding Name}"
+                                       Margin="0 0 0 0"
+                                       FontSize="43"
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </toolkit:ListPicker.FullModeItemTemplate>
+            </toolkit:ListPicker>
         </StackPanel>
     </Grid>
 </view:AppPage>
