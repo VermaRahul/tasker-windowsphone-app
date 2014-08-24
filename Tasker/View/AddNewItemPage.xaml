@@ -29,8 +29,8 @@
                                             Text="SAVE"
                                             Click="SaveButtonOnClick"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/ApplicationBar.Cancel.png"
-                                            Text="CANCEL" 
-                                            Click="CancelButtonOnClick"/>
+                                            Text="CANCEL"
+                                            Click="CancelButtonOnClick" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     <Grid x:Name="LayoutRoot"
@@ -43,17 +43,16 @@
         <StackPanel x:Name="ContentStackPanel"
                     Background="{StaticResource PageContentBackgroundBrush}"
                     Grid.Row="1">
-            <toolkit:PhoneTextBox x:Name="ItemTitleTextBox"
+            <toolkit:SpeechTextBox x:Name="ItemTitleTextBox"
                                   Hint="Title"
                                   Margin="12,24,12,6"
-                                  InputScope="Text"/>
-            <toolkit:PhoneTextBox x:Name="DescriptionTextBox"
-                                  Hint="Description"
+                                  InputScope="Text" />
+            <toolkit:SpeechTextBox x:Name="DescriptionTextBox"
+                                  Hint="Notes"
                                   Margin="12,6,12,24"
                                   TextWrapping="Wrap"
                                   Visibility="{Binding PageItemType,Converter={StaticResource IsEventComponentToVisibilityConverter}}"
                                   AcceptsReturn="True"
-                                  MaxHeight="370"
                                   InputScope="Text"/>
             <TextBlock Text="Date"
                        Margin="22,0"
