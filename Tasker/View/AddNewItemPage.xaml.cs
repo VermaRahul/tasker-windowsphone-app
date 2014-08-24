@@ -39,6 +39,13 @@ namespace Tasker.View
                 else
                     _vm.NavigationService.GoBack(new Category {Name = ItemTitleTextBox.Text});
             }
+            else if (_vm.PageItemType == ObjectType.Event)
+            {
+                if (string.IsNullOrEmpty(ItemTitleTextBox.Text))
+                    _vm.InvokeError("Enter title", "error");
+                else
+                    _vm.NavigationService.GoBack(new Event { Title = ItemTitleTextBox.Text, Date = DatePickerControl.Value ?? DateTime.Today, Description = DescriptionTextBox.Text });
+            }
         }
 
         private void CancelButtonOnClick(object sender, EventArgs e)

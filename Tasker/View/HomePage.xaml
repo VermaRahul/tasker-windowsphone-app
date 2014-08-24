@@ -36,8 +36,32 @@
                          Style="{StaticResource HomePivotStyle}">
 				<phone:PivotItem Header="Events"
 								 Style="{StaticResource PivotItemStyle}">
-					<Grid Background="Blue" />
-				</phone:PivotItem>
+<!--					<Grid Background="Blue" />-->
+                    <Grid>
+                        <phone:LongListSelector x:Name="EventsLongListSelector"
+                                                toolkit:TiltEffect.IsTiltEnabled="True"
+                                                ItemsSource="{Binding Events}">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="Transparent"
+                                            Padding="18,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Title}"
+                                                       FontSize="36"
+                                                       Foreground="White"
+                                                       VerticalAlignment="Center"
+                                                       FontWeight="Bold" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                    </Grid>
+                </phone:PivotItem>
 				<phone:PivotItem Header="Categories"
 								 Style="{StaticResource PivotItemStyle}">
 <!--					<Grid Background="Brown" />-->

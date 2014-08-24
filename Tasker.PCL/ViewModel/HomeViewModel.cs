@@ -23,11 +23,13 @@ namespace Tasker.PCL.ViewModel
 
         private async void InitData()
         {
+            IsLoading = true;
             if (AppData == null)
-                AppData = await _settingsManager.ReadJsonDataFileAsync<JsonData>("Json.dat");
+                InitializeJsonData();
 
             if(AppData == null)
                 AppData = new JsonData();
+            IsLoading = false;
         }
 
         private async void InitializeJsonData()
@@ -35,7 +37,7 @@ namespace Tasker.PCL.ViewModel
             AppData = await _settingsManager.ReadJsonDataFileAsync<JsonData>("Json.dat");
         }
 
-        public override void SetData(object content)
+        public async override void SetData(object content)
         {
             if(AppData == null)
                 return;
@@ -46,10 +48,30 @@ namespace Tasker.PCL.ViewModel
 
                 if (AppData.Categories.FirstOrDefault(t => t.Name.Equals(item.Name)) == null)
                 {
+                    IsLoading = true;
                     var copy = AppData.DeepCopy();
-                    copy.Categories.Add(content as Category);
-                    _settingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
+                    copy.Categories.Add(item);
+                    await _settingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
                     AppData = copy;
+                    IsLoading = false;
+                }
+                else
+                {
+                    InvokeError("Item already exists", "error");
+                }
+            }
+            else if (content is Event)
+            {
+                var item = content as Event;
+
+                if (AppData.Events.FirstOrDefault(t => t.Title.Equals(item.Title)) == null)
+                {
+                    IsLoading = true;
+                    var copy = AppData.DeepCopy();
+                    copy.Events.Add(item);
+                    await _settingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
+                    AppData = copy;
+                    IsLoading = false;
                 }
                 else
                 {
@@ -117,6 +139,7 @@ namespace Tasker.PCL.ViewModel
                     _appData = new JsonData();
                 }
                 Categories = _appData.Categories;
+                Events = _appData.Events;
             }
         }
 
@@ -135,6 +158,23 @@ namespace Tasker.PCL.ViewModel
         {
             get { return _categories; }
             set { Set(CategoriesPropertyName, ref _categories, value); }
+        }
+
+        /// <summary>
+        /// The <see cref="Events" /> property's name.
+        /// </summary>
+        public const string EventsPropertyName = "Events";
+
+        private List<Event> _events = null;
+
+        /// <summary>
+        /// Sets and gets the Events property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public List<Event> Events
+        {
+            get { return _events; }
+            set { Set(EventsPropertyName, ref _events, value); }
         }
 
         #endregion

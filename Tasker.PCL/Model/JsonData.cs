@@ -16,6 +16,15 @@ namespace Tasker.PCL.Model
         [DataMember, JsonProperty(PropertyName = JsonConstants.Categories)]
         public List<Category> Categories;
 
+        [DataMember, JsonProperty(PropertyName = JsonConstants.Events)]
+        public List<Event> Events;
+
+        public JsonData()
+        {
+            Categories = new List<Category>();
+            Events = new List<Event>();
+        }
+
         public JsonData DeepCopy()
         {
             var ser = JsonConvert.SerializeObject(this);
