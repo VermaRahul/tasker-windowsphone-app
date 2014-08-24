@@ -20,7 +20,53 @@
               shell:SystemTray.ForegroundColor="{StaticResource SystemTrayForegroundColor}"
               shell:SystemTray.BackgroundColor="{StaticResource PageHeaderBackgroundColor}"
               DataContext="{Binding HomeViewModel, Source={StaticResource Locator}}">
-	<view:AppPage.ApplicationBar>
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="groupHeaderTemplate">
+            <Border Background="Transparent">
+                <Border Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="1"
+                        Width="400"
+                        Height="90"
+                        HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Title}"
+                               Foreground="{StaticResource PhoneAccentBrush}"
+                               FontSize="28"
+                               Padding="2"
+                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
+                </Border>
+            </Border>
+        </DataTemplate>
+        <phone:JumpListItemBackgroundConverter x:Key="BackgroundConverter" />
+        <phone:JumpListItemForegroundConverter x:Key="ForegroundConverter" />
+        <Style x:Key="LongListSelectorJumpListStyle"
+               TargetType="phone:LongListSelector">
+            <Setter Property="LayoutMode"
+                    Value="List" />
+            <Setter Property="Margin"
+                    Value="12,12,0,0" />
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border Background="{Binding Converter={StaticResource BackgroundConverter}}"
+                                Width="470"
+                                Height="70"
+                                Margin="6">
+                            <TextBlock Text="{Binding Title}"
+                                       Foreground="{Binding Converter={StaticResource ForegroundConverter}}"
+                                       FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                                       FontSize="28"
+                                       Padding="2"
+                                       VerticalAlignment="Bottom" />
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+    <view:AppPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True"
                               BackgroundColor="{StaticResource PageHeaderBackgroundColor}"
                               ForegroundColor="White">
@@ -55,9 +101,14 @@
 								 Style="{StaticResource PivotItemStyle}">
 <!--					<Grid Background="Blue" />-->
                     <Grid>
-                        <phone:LongListSelector x:Name="EventsLongListSelector"
-                                                toolkit:TiltEffect.IsTiltEnabled="True"
-                                                ItemsSource="{Binding Events}">
+                        <phone:LongListSelector IsGroupingEnabled="True" 
+                                                ItemsSource="{Binding GroupedEvents}"
+                                                JumpListStyle="{StaticResource LongListSelectorJumpListStyle}"
+                                                Background="Transparent"
+                                                GroupHeaderTemplate="{StaticResource groupHeaderTemplate}"
+                                                LayoutMode="List"
+                                                HideEmptyGroups="False"
+                                                toolkit:TiltEffect.IsTiltEnabled="True">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="Transparent"
@@ -68,10 +119,10 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Text="{Binding Title}"
-                                                       FontSize="36"
-                                                       Foreground="White"
-                                                       VerticalAlignment="Center"
-                                                       FontWeight="Bold" />
+                                                        FontSize="36"
+                                                        Foreground="White"
+                                                        VerticalAlignment="Center"
+                                                        FontWeight="Bold" />
                                         </Grid>
                                     </Border>
                                 </DataTemplate>

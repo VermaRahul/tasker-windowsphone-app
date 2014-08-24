@@ -34,10 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\TimeFrame.cs" />
     <Compile Include="Enumerations\ObjectType.cs" />
+    <Compile Include="Extensions\DateExtensions.cs" />
     <Compile Include="Model\AppContext.cs" />
     <Compile Include="Model\AppSettings.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CustomKeyGroup.cs" />
     <Compile Include="Model\JsonData.cs" />
     <Compile Include="Model\Event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 using Tasker.PCL.Enumerations;
+using Tasker.PCL.Extensions;
 using Tasker.PCL.Model;
 using Tasker.PCL.Utils;
 
@@ -174,7 +175,37 @@ namespace Tasker.PCL.ViewModel
         public List<Event> Events
         {
             get { return _events; }
-            set { Set(EventsPropertyName, ref _events, value); }
+            set
+            {
+                Set(EventsPropertyName, ref _events, value);
+                GroupEvents();
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GroupedEvents" /> property's name.
+        /// </summary>
+        public const string GroupedEventsPropertyName = "GroupedEvents";
+
+        private List<CustomKeyGroup<Event>.Group<Event>> _groupedEventsList = null;
+
+        /// <summary>
+        /// Sets and gets the GroupedEvents property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public List<CustomKeyGroup<Event>.Group<Event>> GroupedEvents
+        {
+            get { return _groupedEventsList; }
+            set { Set(GroupedEventsPropertyName, ref _groupedEventsList, value); }
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        private void GroupEvents()
+        {
+            GroupedEvents = CustomKeyGroup<Event>.GetEventGroups(Events);
         }
 
         #endregion
