@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
+using Tasker.PCL.Enumerations;
 using Tasker.PCL.Utils;
 
 namespace Tasker.PCL.Model
@@ -18,5 +19,8 @@ namespace Tasker.PCL.Model
 
         [DataMember, JsonProperty(PropertyName = JsonConstants.Category)]
         public Category Category { get; set; }
+
+        [DataMember, JsonProperty(PropertyName = JsonConstants.Priority)]
+        public Priority Priority { get; set; }
     }
 }

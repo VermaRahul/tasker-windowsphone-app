@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\Priority.cs" />
     <Compile Include="Enumerations\TimeFrame.cs" />
     <Compile Include="Enumerations\ObjectType.cs" />
     <Compile Include="Extensions\DateExtensions.cs" />

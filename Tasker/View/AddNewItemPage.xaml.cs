@@ -39,13 +39,15 @@ namespace Tasker.View
                     _vm.InvokeError("Enter title", "error");
                 else
                 {
-                    var pickerItem = (Category) CategoryListPicker.SelectedItem;
+                    var categoryItem = (Category) CategoryListPicker.SelectedItem;
+                    var priorityItem = PriorityListPicker.SelectedItem.ToString();
                     _vm.NavigationService.GoBack(new Event
                     {
                         Title = ItemTitleTextBox.Text,
                         Date = DatePickerControl.Value ?? DateTime.Today,
                         Description = DescriptionTextBox.Text,
-                        Category = pickerItem != null && pickerItem.Hide != true ? pickerItem : null
+                        Category = categoryItem != null && categoryItem.Hide != true ? categoryItem : null,
+                        Priority = priorityItem.ToLower().Equals("low") ? Priority.Normal : Priority.High
                     });
                 }
             }
