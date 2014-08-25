@@ -22,49 +22,62 @@
               DataContext="{Binding HomeViewModel, Source={StaticResource Locator}}">
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="groupHeaderTemplate">
-            <Border Background="Transparent">
-                <Border Background="Transparent"
-                        BorderBrush="Transparent"
-                        BorderThickness="1"
-                        Width="400"
-                        Height="90"
-                        HorizontalAlignment="Left">
+            <Border Background="Transparent"
+                    Margin="8,18">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
                     <TextBlock Text="{Binding Title}"
-                               Foreground="{StaticResource PhoneAccentBrush}"
-                               FontSize="28"
-                               Padding="2"
-                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center" />
-                </Border>
+                               FontSize="36"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               FontWeight="Bold">
+                        </TextBlock>
+                </Grid>
             </Border>
         </DataTemplate>
         <phone:JumpListItemBackgroundConverter x:Key="BackgroundConverter" />
         <phone:JumpListItemForegroundConverter x:Key="ForegroundConverter" />
-        <Style x:Key="LongListSelectorJumpListStyle"
-               TargetType="phone:LongListSelector">
-            <Setter Property="LayoutMode"
-                    Value="List" />
-            <Setter Property="Margin"
-                    Value="12,12,0,0" />
-            <Setter Property="ItemTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <Border Background="{Binding Converter={StaticResource BackgroundConverter}}"
-                                Width="470"
-                                Height="70"
-                                Margin="6">
-                            <TextBlock Text="{Binding Title}"
-                                       Foreground="{Binding Converter={StaticResource ForegroundConverter}}"
-                                       FontFamily="{StaticResource PhoneFontFamilySemiBold}"
-                                       FontSize="28"
-                                       Padding="2"
-                                       VerticalAlignment="Bottom" />
-                        </Border>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <DataTemplate x:Key="EventItemTemplate">
+            <Grid Margin="{StaticResource PhoneTouchTargetOverhang}"
+                  Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0"
+                           Fill="{Binding Priority, Converter={StaticResource PriorityToBrushConverter}}" />
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Top">
+                    <TextBlock Text="{Binding Title}"
+                               FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                               Style="{StaticResource PhoneTextLargeStyle}"
+                               FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                               TextWrapping="Wrap"
+                               Margin="12,-12,12,6" />
+                    <TextBlock Text="{Binding Category, Converter={StaticResource CategoryToTextConverter}}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap"
+                               FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
+                    <TextBlock Text="{Binding Date, StringFormat='MM/dd/yyyy'}"
+                               Style="{StaticResource PhoneTextSmallStyle}"
+                               FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
+                    <TextBlock Text="{Binding Description}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap"
+                               FontFamily="{StaticResource PhoneFontFamilySemiLight}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="EventItemInfoTemplate">
+            <Border Width="74"
+                    Margin="0,9,24,0">
+                <TextBlock Text="{Binding Time}"
+                           HorizontalAlignment="Right" />
+            </Border>
+        </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
     <view:AppPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True"
@@ -72,8 +85,8 @@
                               ForegroundColor="White">
 			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/ApplicationBar.Add.png" Text="new"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/ApplicationBar.List.Select.png" Text="select"/>
-		</shell:ApplicationBar>
-	</view:AppPage.ApplicationBar>
+        </shell:ApplicationBar>
+    </view:AppPage.ApplicationBar>
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="False"
                                  IsVisible="{Binding IsLoading}"
@@ -85,7 +98,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <!--<TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="Tasker" FontSize="34.667" />-->
         <ProgressBar IsIndeterminate="True"
                      Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
                      Foreground="White"
@@ -97,50 +109,31 @@
               Background="{StaticResource PageContentBackgroundBrush}">
             <phone:Pivot x:Name="ContentPivot"
                          Style="{StaticResource HomePivotStyle}">
-				<phone:PivotItem Header="Events"
-								 Style="{StaticResource PivotItemStyle}">
-<!--					<Grid Background="Blue" />-->
+                <phone:PivotItem Header="Events"
+                                 Style="{StaticResource PivotItemStyle}">
                     <Grid>
-                        <phone:LongListSelector IsGroupingEnabled="True" 
+                        <phone:LongListSelector IsGroupingEnabled="True"
                                                 ItemsSource="{Binding GroupedEvents}"
-                                                JumpListStyle="{StaticResource LongListSelectorJumpListStyle}"
                                                 Background="Transparent"
+                                                ItemTemplate="{StaticResource EventItemTemplate}"
                                                 GroupHeaderTemplate="{StaticResource groupHeaderTemplate}"
                                                 LayoutMode="List"
                                                 HideEmptyGroups="False"
                                                 toolkit:TiltEffect.IsTiltEnabled="True">
-                            <phone:LongListSelector.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Background="Transparent"
-                                            Padding="18,10">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding Title}"
-                                                        FontSize="36"
-                                                        Foreground="White"
-                                                        VerticalAlignment="Center"
-                                                        FontWeight="Bold" />
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </phone:LongListSelector.ItemTemplate>
+                            
                         </phone:LongListSelector>
                     </Grid>
                 </phone:PivotItem>
-				<phone:PivotItem Header="Categories"
-								 Style="{StaticResource PivotItemStyle}">
-<!--					<Grid Background="Brown" />-->
-                    <Grid >
+                <phone:PivotItem Header="Categories"
+                                 Style="{StaticResource PivotItemStyle}">
+                    <Grid>
                         <phone:LongListSelector x:Name="CategoriesLongListSelector"
                                                 toolkit:TiltEffect.IsTiltEnabled="True"
                                                 ItemsSource="{Binding Categories}">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="Transparent"
-                                        Padding="18,10">
+                                            Padding="18,10">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
@@ -154,13 +147,11 @@
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
-                                
                             </phone:LongListSelector.ItemTemplate>
-                            
                         </phone:LongListSelector>
                     </Grid>
-				</phone:PivotItem>
-			</phone:Pivot>
-		</Grid>
+                </phone:PivotItem>
+            </phone:Pivot>
+        </Grid>
     </Grid>
 </view:AppPage>

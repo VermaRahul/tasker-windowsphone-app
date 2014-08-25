@@ -23,7 +23,9 @@
     			d:IsDataSource="True" />
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+            <converters:PriorityToBrushConverter x:Key="PriorityToBrushConverter" />
             <converters:IsEventComponentConverter x:Key="IsEventComponentToVisibilityConverter" />
+            <converters:CategoryToTextConverter x:Key="CategoryToTextConverter" /> 
         </ResourceDictionary>
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>

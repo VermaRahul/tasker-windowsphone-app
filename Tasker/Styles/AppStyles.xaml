@@ -7,6 +7,8 @@
     <Color x:Key="SystemTrayForegroundColor">#FEFFFFFF</Color>
     <Color x:Key="PageHeaderBackgroundColor">#FF283440</Color>
     <Color x:Key="PageContentBackgroundColor">#FF222C38</Color>
+    <Color x:Key="TasksLowPriorityColor">#FF418285</Color>
+    <Color x:Key="TasksHighPriorityColor">#FFD13F3F</Color>
     <Color x:Key="AppGrayColor">Gray</Color>
 <!--    Brushes-->
     <SolidColorBrush x:Key="PageHeaderBackgroundBrush"
@@ -17,6 +19,10 @@
     
     <SolidColorBrush x:Key="AppGrayBrush"
                      Color="{StaticResource AppGrayColor}"></SolidColorBrush>
+    <SolidColorBrush x:Key="TasksLowPriorityBrush"
+                     Color="{StaticResource TasksLowPriorityColor}"/>
+    <SolidColorBrush x:Key="TasksHighPriorityBrush"
+                     Color="{StaticResource TasksHighPriorityColor}" />
     <!--    Pivot Styles-->
     <Style x:Key="HomePivotStyle"
            TargetType="phone:Pivot">
