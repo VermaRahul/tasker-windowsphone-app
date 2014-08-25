@@ -57,6 +57,7 @@
     <Compile Include="Utils\JsonConstants.cs" />
     <Compile Include="ViewModel\AddNewItemViewModel.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
+    <Compile Include="ViewModel\EventsViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\NavigationService.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

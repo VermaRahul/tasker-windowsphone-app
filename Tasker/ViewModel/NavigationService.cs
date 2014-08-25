@@ -18,12 +18,14 @@ namespace Tasker.ViewModel
         {
             Register(typeof(HomeViewModel), PageId.Home);
             Register(typeof(AddNewItemViewModel), PageId.AddNew);
+            Register(typeof(EventsViewModel), PageId.Events);
         }
 
         public enum PageId
         {
             Home,
-            AddNew
+            AddNew,
+            Events
         }
 
         public override void GoBack(object data)
@@ -89,6 +91,9 @@ namespace Tasker.ViewModel
                     break;
                 case PageId.AddNew:
                     pageUri = "/View/AddNewItemPage.xaml";
+                    break;
+                case PageId.Events:
+                    pageUri = "/View/EventsPage.xaml";
                     break;
                 default:
                     pageUri = "/View/HomePage.xaml";

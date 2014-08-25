@@ -11,5 +11,8 @@ namespace Tasker.PCL.Model
     {
         public ObjectType Mode { get; set; }
         public List<Category> Categories { get; set; }
+        public List<Event> Events { get; set; }
+        public Category Category { get; set; }
+
     }
 }

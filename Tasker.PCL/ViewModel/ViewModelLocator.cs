@@ -13,7 +13,13 @@ namespace Tasker.PCL.ViewModel
             SimpleIoc.Default.Register<AppContext>();
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<AddNewItemViewModel>();
+            SimpleIoc.Default.Register<EventsViewModel>();
 
+        }
+
+        public EventsViewModel EventsViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<EventsViewModel>(); }
         }
 
         public HomeViewModel HomeViewModel
