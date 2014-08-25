@@ -38,7 +38,12 @@ namespace Tasker.PCL.ViewModel
             if (data.Categories == null)
                 return;
 
-            Categories = data.Categories;
+            Categories = new List<Category> {new Category {Name = "No Category", Hide = true}};
+
+            foreach (var category in data.Categories)
+            {
+                Categories.Add(category);
+            }
         }
 
         #region Properties

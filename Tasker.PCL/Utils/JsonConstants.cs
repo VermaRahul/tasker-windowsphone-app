@@ -14,5 +14,6 @@ namespace Tasker.PCL.Utils
         public const string Title = "title";
         public const string Description = "desctiprion";
         public const string Date = "date";
+        public const string Category = "category";
     }
 }

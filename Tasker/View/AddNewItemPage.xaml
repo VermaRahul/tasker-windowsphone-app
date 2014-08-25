@@ -76,7 +76,8 @@
                 <toolkit:ListPicker.FullModeItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"
-                                    Margin="16 21 0 20">
+                                    Margin="16 21 0 20"
+                                    Visibility="{Binding Hide, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                             <TextBlock Text="{Binding Name}"
                                        Margin="0 0 0 0"
                                        FontSize="43"

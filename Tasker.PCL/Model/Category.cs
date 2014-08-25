@@ -13,5 +13,8 @@ namespace Tasker.PCL.Model
     {
         [DataMember, JsonProperty(PropertyName = JsonConstants.Name)]
         public string Name { get; set; }
+
+        [JsonIgnore]
+        public bool Hide { get; set; }
     }
 }

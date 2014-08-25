@@ -38,7 +38,16 @@ namespace Tasker.View
                 if (string.IsNullOrEmpty(ItemTitleTextBox.Text))
                     _vm.InvokeError("Enter title", "error");
                 else
-                    _vm.NavigationService.GoBack(new Event { Title = ItemTitleTextBox.Text, Date = DatePickerControl.Value ?? DateTime.Today, Description = DescriptionTextBox.Text });
+                {
+                    var pickerItem = (Category) CategoryListPicker.SelectedItem;
+                    _vm.NavigationService.GoBack(new Event
+                    {
+                        Title = ItemTitleTextBox.Text,
+                        Date = DatePickerControl.Value ?? DateTime.Today,
+                        Description = DescriptionTextBox.Text,
+                        Category = pickerItem != null && pickerItem.Hide != true ? pickerItem : null
+                    });
+                }
             }
         }
 

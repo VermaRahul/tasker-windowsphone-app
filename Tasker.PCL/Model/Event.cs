@@ -15,5 +15,8 @@ namespace Tasker.PCL.Model
 
         [DataMember, JsonProperty(PropertyName = JsonConstants.Date)]
         public DateTime Date { get; set; }
+
+        [DataMember, JsonProperty(PropertyName = JsonConstants.Category)]
+        public Category Category { get; set; }
     }
 }

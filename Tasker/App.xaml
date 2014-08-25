@@ -22,6 +22,7 @@
     		<vm:ViewModelLocator x:Key="Locator"
     			d:IsDataSource="True" />
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
             <converters:IsEventComponentConverter x:Key="IsEventComponentToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>

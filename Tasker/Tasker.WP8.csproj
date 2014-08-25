@@ -98,6 +98,7 @@
       <DependentUpon>PageHeaderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\InverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\IsEventComponentConverter.cs" />
     <Compile Include="Extensions\FrameExtension.cs" />
     <Compile Include="Resources\LocalizedStrings.cs" />
