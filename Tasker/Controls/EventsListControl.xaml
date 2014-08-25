@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Tasker.Controls.EventsListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+             xmlns:model="clr-namespace:Tasker.PCL.Model;assembly=Tasker.PCL"
+             mc:Ignorable="d"
+             FontFamily="{StaticResource PhoneFontFamilyNormal}"
+             FontSize="{StaticResource PhoneFontSizeNormal}"
+             Foreground="{StaticResource PhoneForegroundBrush}"
+             d:DesignHeight="480"
+             d:DesignWidth="480"
+             x:Name="EventListControlRoot">
+    <UserControl.Resources>
+        <DataTemplate x:Key="EventItemTemplate">
+            <Grid Margin="{StaticResource PhoneTouchTargetOverhang}"
+                  Background="Transparent"
+                  d:DataContext="{d:DesignInstance Type=model:Event}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0"
+                           Fill="{Binding Priority, Converter={StaticResource PriorityToBrushConverter}}" />
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Top">
+                    <TextBlock Text="{Binding Title}"
+                               FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                               Style="{StaticResource PhoneTextLargeStyle}"
+                               FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                               TextWrapping="Wrap"
+                               Margin="12,-12,12,6" />
+                    <TextBlock Text="{Binding Category, Converter={StaticResource CategoryToTextConverter}}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap"
+                               FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
+                    <TextBlock Text="{Binding Date, StringFormat='MM/dd/yyyy'}"
+                               Style="{StaticResource PhoneTextSmallStyle}"
+                               FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
+                    <TextBlock Text="{Binding Description}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap"
+                               FontFamily="{StaticResource PhoneFontFamilySemiLight}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="EventsListHeaderTemplate">
+            <Border Background="Transparent"
+                    Margin="8,18">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Title}"
+                               FontSize="36"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               FontWeight="Bold"></TextBlock>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <phone:LongListSelector x:Name="EventsListSelector"
+                                IsGroupingEnabled="True"
+                                ItemsSource="{Binding GroupedEvents}"
+                                Background="Transparent"
+                                ItemTemplate="{StaticResource EventItemTemplate}"
+                                GroupHeaderTemplate="{StaticResource EventsListHeaderTemplate}"
+                                LayoutMode="List"
+                                HideEmptyGroups="False"
+                                toolkit:TiltEffect.IsTiltEnabled="True" />
+    </Grid>
+</UserControl>
