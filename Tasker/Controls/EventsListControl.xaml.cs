@@ -39,7 +39,30 @@ namespace Tasker.Controls
                 return;
 
             var groupedEvents = e.NewValue as List<CustomKeyGroup<Event>.Group<Event>>;
+            elc.NoItemsMessage.Visibility = groupedEvents != null && groupedEvents.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
             elc.EventsListSelector.ItemsSource = groupedEvents;
+        }
+
+
+
+        public List<Event> Events
+        {
+            get { return (List<Event>)GetValue(EventsProperty); }
+            set { SetValue(EventsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Events.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EventsProperty =
+            DependencyProperty.Register("Events", typeof(List<Event>), typeof(EventsListControl), new PropertyMetadata(null, OnEventsChangedCallback));
+
+        private static void OnEventsChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var elc = d as EventsListControl;
+            if (elc == null)
+                return;
+            var events = e.NewValue as List<Event>;
+            elc.NoItemsMessage.Visibility = events != null && events.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+            elc.GroupedEventsList = CustomKeyGroup<Event>.GetEventGroups(events);
         }
 
         #endregion

@@ -62,7 +62,7 @@
                 <phone:PivotItem Header="Events"
                                  Style="{StaticResource PivotItemStyle}">
                     <Grid>
-                        <controls:EventsListControl GroupedEventsList="{Binding GroupedEvents}" />
+                        <controls:EventsListControl Events="{Binding Events}" />
                     </Grid>
                 </phone:PivotItem>
                 <phone:PivotItem Header="Categories"
@@ -70,7 +70,8 @@
                     <Grid>
                         <phone:LongListSelector x:Name="CategoriesLongListSelector"
                                                 toolkit:TiltEffect.IsTiltEnabled="True"
-                                                ItemsSource="{Binding Categories}">
+                                                ItemsSource="{Binding Categories}"
+                                                SelectionChanged="CategoriesListSelectionChanged">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="Transparent"

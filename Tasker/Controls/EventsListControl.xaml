@@ -74,5 +74,22 @@
                                 LayoutMode="List"
                                 HideEmptyGroups="False"
                                 toolkit:TiltEffect.IsTiltEnabled="True" />
+        <Border x:Name="NoItemsMessage"
+                Background="Transparent"
+                Margin="8,36"
+                Visibility="Collapsed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="No Events"
+                           FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                           Style="{StaticResource PhoneTextLargeStyle}"
+                           FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                           TextWrapping="Wrap"
+                           Margin="12,18,12,6" />
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
