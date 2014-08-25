@@ -54,11 +54,11 @@ namespace Tasker.View
 
         private void DatePickerValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
-            var value = DatePickerControl.Value;
-            if(value == null)
-                return;
-            if (DateTime.Today.CompareTo(value) > 0)
-                DatePickerControl.Value = DateTime.Today;
+//            var value = DatePickerControl.Value;
+//            if(value == null)
+//                return;
+//            if (DateTime.Today.CompareTo(value) > 0)
+//                DatePickerControl.Value = DateTime.Today;
         }
     }
 }
