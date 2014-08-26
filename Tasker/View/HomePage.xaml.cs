@@ -93,17 +93,17 @@ namespace Tasker.View
 
         }
 
-        private void OnPivotSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnPanoramaSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ApplicationBar.Buttons.Clear();
-            var pivotItem = ContentPivot.SelectedItem as PivotItem;
-            if (pivotItem == null)
+            var panoramaItem = ContentPanorama.SelectedItem as PanoramaItem;
+            if (panoramaItem == null)
                 return;
-            if(pivotItem.Header.Equals("Events"))
+            if(panoramaItem.Header.Equals("Events"))
             {
                 ApplicationBar.Buttons.Add(_addEventButton);
             }
-            else if (pivotItem.Header.Equals("Categories"))
+            else if (panoramaItem.Header.Equals("Categories"))
             {
                 ApplicationBar.Buttons.Add(_addCategoryButton);
                 

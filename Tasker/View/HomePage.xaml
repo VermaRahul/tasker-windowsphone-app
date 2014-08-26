@@ -28,6 +28,34 @@
                            HorizontalAlignment="Right" />
             </Border>
         </DataTemplate>
+        <DataTemplate x:Key="DataTemplate1">
+            <Grid />
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate2">
+            <Grid />
+        </DataTemplate>
+        <Style x:Key="PanoramaItemStyle1" TargetType="phone:PanoramaItem">
+        	<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        	<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="phone:PanoramaItem">
+        				<Grid Background="{TemplateBinding Background}" Margin="12,0,0,0">
+        					<Grid.RowDefinitions>
+        						<RowDefinition Height="auto"/>
+        						<RowDefinition Height="*"/>
+        					</Grid.RowDefinitions>
+        					<ContentControl x:Name="header" CharacterSpacing="-35" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" FontSize="66" FontFamily="{StaticResource PhoneFontFamilySemiLight}" HorizontalAlignment="Left" Margin="12,-2,0,0">
+        						<ContentControl.RenderTransform>
+        							<TranslateTransform x:Name="headerTransform"/>
+        						</ContentControl.RenderTransform>
+        					</ContentControl>
+        					<ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Grid.Row="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
     </phone:PhoneApplicationPage.Resources>
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="False"
@@ -45,21 +73,20 @@
                      Foreground="White"
                      VerticalAlignment="Top" />
         <controls:PageHeaderControl HorizontalAlignment="Left"
-                                    SelectedItem="{Binding SelectedItem, ElementName=ContentPivot}"
-                                    AddButtonPressedCommand="{Binding AddNewButtonPressedCommand}"/>
+                                    SelectedItem="{Binding SelectedItem, ElementName=ContentPanorama}"
+                                    AddButtonPressedCommand="{Binding AddNewButtonPressedCommand}" />
         <Grid Grid.Row="1"
               Background="{StaticResource PageContentBackgroundBrush}">
-            <phone:Pivot x:Name="ContentPivot"
-                         Style="{StaticResource HomePivotStyle}"
-                         SelectionChanged="OnPivotSelectionChanged">
-                <phone:PivotItem Header="Events"
-                                 Style="{StaticResource PivotItemStyle}">
+            <phone:Panorama x:Name="ContentPanorama"
+                            SelectionChanged="OnPanoramaSelectionChanged"
+                            HeaderTemplate="{StaticResource DataTemplate1}"
+                            TitleTemplate="{StaticResource DataTemplate2}">
+                <phone:PanoramaItem Header="Events" Style="{StaticResource PanoramaItemStyle1}">
                     <Grid>
                         <controls:EventsListControl Events="{Binding Events}" />
                     </Grid>
-                </phone:PivotItem>
-                <phone:PivotItem Header="Categories"
-                                 Style="{StaticResource PivotItemStyle}">
+                </phone:PanoramaItem>
+                <phone:PanoramaItem Header="Categories">
                     <Grid>
                         <phone:LongListSelector x:Name="CategoriesLongListSelector"
                                                 toolkit:TiltEffect.IsTiltEnabled="True"
@@ -85,8 +112,46 @@
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>
                     </Grid>
-                </phone:PivotItem>
-            </phone:Pivot>
+                </phone:PanoramaItem>
+            </phone:Panorama>
+            <!--            <phone:Pivot x:Name="ContentPivot"-->
+            <!--                         Style="{StaticResource HomePivotStyle}"-->
+            <!--                         SelectionChanged="OnPivotSelectionChanged">-->
+            <!--                <phone:PivotItem Header="Events"-->
+            <!--                                 Style="{StaticResource PivotItemStyle}">-->
+            <!--                    <Grid>-->
+            <!--                        <controls:EventsListControl Events="{Binding Events}" />-->
+            <!--                    </Grid>-->
+            <!--                </phone:PivotItem>-->
+            <!--                <phone:PivotItem Header="Categories"-->
+            <!--                                 Style="{StaticResource PivotItemStyle}">-->
+            <!--                    <Grid>-->
+            <!--                        <phone:LongListSelector x:Name="CategoriesLongListSelector"-->
+            <!--                                                toolkit:TiltEffect.IsTiltEnabled="True"-->
+            <!--                                                ItemsSource="{Binding Categories}"-->
+            <!--                                                SelectionChanged="CategoriesListSelectionChanged">-->
+            <!--                            <phone:LongListSelector.ItemTemplate>-->
+            <!--                                <DataTemplate>-->
+            <!--                                    <Border Background="Transparent"-->
+            <!--                                            Padding="18,10">-->
+            <!--                                        <Grid>-->
+            <!--                                            <Grid.ColumnDefinitions>-->
+            <!--                                                <ColumnDefinition Width="Auto" />-->
+            <!--                                                <ColumnDefinition Width="*" />-->
+            <!--                                            </Grid.ColumnDefinitions>-->
+            <!--                                            <TextBlock Text="{Binding Name}"-->
+            <!--                                                       FontSize="36"-->
+            <!--                                                       Foreground="White"-->
+            <!--                                                       VerticalAlignment="Center"-->
+            <!--                                                       FontWeight="Bold" />-->
+            <!--                                        </Grid>-->
+            <!--                                    </Border>-->
+            <!--                                </DataTemplate>-->
+            <!--                            </phone:LongListSelector.ItemTemplate>-->
+            <!--                        </phone:LongListSelector>-->
+            <!--                    </Grid>-->
+            <!--                </phone:PivotItem>-->
+            <!--            </phone:Pivot>-->
         </Grid>
     </Grid>
 </view:AppPage>

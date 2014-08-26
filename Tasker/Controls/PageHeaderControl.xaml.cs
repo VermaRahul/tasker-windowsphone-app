@@ -22,23 +22,23 @@ namespace Tasker.Controls
 
         #region Properties
 
-        public PivotItem SelectedItem
+        public PanoramaItem SelectedItem
         {
-            get { return (PivotItem)GetValue(SelectedItemProperty); }
+            get { return (PanoramaItem)GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for SelectedItem.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedItemProperty =
-            DependencyProperty.Register("SelectedItem", typeof(PivotItem), typeof(PageHeaderControl), new PropertyMetadata(null, OnSelectedItemChanged));
+            DependencyProperty.Register("SelectedItem", typeof(PanoramaItem), typeof(PageHeaderControl), new PropertyMetadata(null, OnSelectedItemChanged));
 
         private static void OnSelectedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var header = d as PageHeaderControl;
-            if(header == null || !(e.NewValue is PivotItem))
+            if(header == null || !(e.NewValue is PanoramaItem))
                 return;
 
-            header.TitleTextBlock.Text = ((PivotItem)e.NewValue).Header as string;
+            header.TitleTextBlock.Text = ((PanoramaItem)e.NewValue).Header as string;
 
             if (header.TitleTextBlock.Text != null && header.TitleTextBlock.Text.ToLower() == "events")
             {
