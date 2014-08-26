@@ -31,11 +31,14 @@
                                Style="{StaticResource PhoneTextLargeStyle}"
                                FontFamily="{StaticResource PhoneFontFamilySemiBold}"
                                TextWrapping="Wrap"
-                               Margin="12,-12,12,6" />
+                               Margin="12,-6,12,6" 
+                               LineStackingStrategy="BlockLineHeight"
+                               LineHeight="46"/>
                     <TextBlock Text="{Binding Category, Converter={StaticResource CategoryToTextConverter}}"
                                Style="{StaticResource PhoneTextNormalStyle}"
                                TextWrapping="Wrap"
-                               FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
+                               FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                               FontWeight="Bold"/>
                     <TextBlock Text="{Binding Date, StringFormat='MM/dd/yyyy'}"
                                Style="{StaticResource PhoneTextSmallStyle}"
                                FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
