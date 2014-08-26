@@ -12,7 +12,7 @@
     <Grid x:Name="TitleBar"
           Background="Transparent"
           Width="460"
-          Margin="10,32,10,0">
+          Margin="10,64,10,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
