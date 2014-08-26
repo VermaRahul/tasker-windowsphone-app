@@ -29,14 +29,14 @@ namespace Tasker.View
             if (_vm.PageItemType == ObjectType.Category)
             {
                 if (string.IsNullOrEmpty(ItemTitleTextBox.Text))
-                    _vm.InvokeError("Enter title", "error");
+                    _vm.InvokeError("Please enter a title before saving", "ERROR");
                 else
                     _vm.NavigationService.GoBack(new Category {Name = ItemTitleTextBox.Text});
             }
             else if (_vm.PageItemType == ObjectType.Event)
             {
                 if (string.IsNullOrEmpty(ItemTitleTextBox.Text))
-                    _vm.InvokeError("Enter title", "error");
+                    _vm.InvokeError("Please enter a title before saving", "Error");
                 else
                 {
                     var categoryItem = (Category) CategoryListPicker.SelectedItem;

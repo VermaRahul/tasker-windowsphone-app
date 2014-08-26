@@ -58,7 +58,7 @@ namespace Tasker.PCL.ViewModel
                 }
                 else
                 {
-                    InvokeError("Item already exists", "error");
+                    InvokeError("A category with the same name already exists", "ERROR");
                 }
             }
             else if (content is Event)
@@ -76,7 +76,7 @@ namespace Tasker.PCL.ViewModel
                 }
                 else
                 {
-                    InvokeError("Item already exists", "error");
+                    InvokeError("An event with the same name already exists", "ERROR");
                 }
             }
         }
