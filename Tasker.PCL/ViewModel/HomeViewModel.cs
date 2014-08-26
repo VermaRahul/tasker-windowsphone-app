@@ -35,7 +35,12 @@ namespace Tasker.PCL.ViewModel
 
         private async void InitializeJsonData()
         {
-            AppData = await _settingsManager.ReadJsonDataFileAsync<JsonData>("Json.dat");
+            var data = await _settingsManager.ReadJsonDataFileAsync<JsonData>("Json.dat");
+            if(data != null && data.Events != null && data.Events.Any())
+                data.Events.Sort((x,y) => x.Date.CompareTo(y.Date));
+            if (data != null && data.Categories != null && data.Categories.Any())
+                data.Categories.Sort((x, y) => x.Name.CompareTo(y.Name));
+            AppData = data;
         }
 
         public async override void SetData(object content)
@@ -52,6 +57,7 @@ namespace Tasker.PCL.ViewModel
                     IsLoading = true;
                     var copy = AppData.DeepCopy();
                     copy.Categories.Add(item);
+                    copy.Categories.Sort((x,y) => x.Name.CompareTo(y.Name));
                     await _settingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
                     AppData = copy;
                     IsLoading = false;
@@ -70,6 +76,7 @@ namespace Tasker.PCL.ViewModel
                     IsLoading = true;
                     var copy = AppData.DeepCopy();
                     copy.Events.Add(item);
+                    copy.Events.Sort((x, y) => x.Date.CompareTo(y.Date));
                     await _settingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
                     AppData = copy;
                     IsLoading = false;

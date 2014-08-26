@@ -36,7 +36,7 @@ namespace Tasker.View
             else if (_vm.PageItemType == ObjectType.Event)
             {
                 if (string.IsNullOrEmpty(ItemTitleTextBox.Text))
-                    _vm.InvokeError("Please enter a title before saving", "Error");
+                    _vm.InvokeError("Please enter a title before saving", "ERROR");
                 else
                 {
                     var categoryItem = (Category) CategoryListPicker.SelectedItem;
