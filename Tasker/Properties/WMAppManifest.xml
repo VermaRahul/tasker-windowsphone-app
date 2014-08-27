@@ -1,7 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{cb43c8ef-49b3-48d1-9fdc-d0abcbb50b53}" Title="Tasker" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Tasker author" Description="Sample description" Publisher="Tasker" PublisherID="{e00d5210-de95-4f2b-a3c3-6da8370626e0}">
+  <Languages xmlns="">
+    <Language code="en" />
+    <Language code="en-AU" />
+    <Language code="en-BZ" />
+    <Language code="en-CA" />
+    <Language code="en-029" />
+    <Language code="en-HK" />
+    <Language code="en-IN" />
+    <Language code="en-IE" />
+    <Language code="en-JM" />
+    <Language code="en-MY" />
+    <Language code="en-NZ" />
+    <Language code="en-PH" />
+    <Language code="en-SG" />
+    <Language code="en-ZA" />
+    <Language code="en-TT" />
+    <Language code="en-GB" />
+    <Language code="en-US" />
+    <Language code="en-ZW" />
+  </Languages>
+  <App xmlns="" ProductID="{cb43c8ef-49b3-48d1-9fdc-d0abcbb50b53}" Title="Tasker" RuntimeType="Silverlight" Version="1.0.1.0" Genre="apps.normal" Author="Coffee Monster" Description="Tasker is your best friend in planning your daily tasks and events. it will help you become more organized in a simple, yet powerful way. Planning your day has never been so simple." Publisher="Tasker" PublisherID="{e00d5210-de95-4f2b-a3c3-6da8370626e0}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
