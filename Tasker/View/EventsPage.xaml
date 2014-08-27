@@ -36,7 +36,8 @@
                 <phone:PivotItem Header="Events"
                                  Style="{StaticResource PivotItemStyle}">
                     <Grid>
-                        <controls:EventsListControl Events="{Binding Events}" />
+                        <controls:EventsListControl Events="{Binding Events}"
+                                                    RemoveEventCommand="{Binding RemoveEventCommand}"/>
                     </Grid>
                 </phone:PivotItem>
             </phone:Pivot>

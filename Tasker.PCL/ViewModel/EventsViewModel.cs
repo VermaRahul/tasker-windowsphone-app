@@ -10,12 +10,8 @@ namespace Tasker.PCL.ViewModel
 {
     public class EventsViewModel : AppViewModel
     {
-        private ISettingsManager _settingsManager;
-
-        public EventsViewModel(AppContext context, INavigationService navigationService, ISettingsManager settingsManager)
-            : base(context, navigationService)
+        public EventsViewModel(AppContext context, INavigationService navigationService, ISettingsManager settingsManager) : base(context, navigationService, settingsManager)
         {
-            _settingsManager = settingsManager;
         }
 
         public override void SetData(object content)

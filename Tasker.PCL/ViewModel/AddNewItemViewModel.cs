@@ -11,11 +11,8 @@ namespace Tasker.PCL.ViewModel
 {
     public class AddNewItemViewModel : AppViewModel
     {
-        private ISettingsManager _settingsManager;
-
-        public AddNewItemViewModel(AppContext context, INavigationService navigationService, ISettingsManager settingsManager) : base(context, navigationService)
+        public AddNewItemViewModel(AppContext context, INavigationService navigationService, ISettingsManager settingsManager) : base(context, navigationService, settingsManager)
         {
-            _settingsManager = settingsManager;
         }
 
         public override void SetData(object content)

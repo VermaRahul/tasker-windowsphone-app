@@ -14,11 +14,8 @@ namespace Tasker.PCL.ViewModel
 {
     public class HomeViewModel : AppViewModel
     {
-        private ISettingsManager _settingsManager;
-
-        public HomeViewModel(AppContext context, INavigationService navigationService, ISettingsManager settingsManager) : base(context, navigationService)
+        public HomeViewModel(AppContext context, INavigationService navigationService, ISettingsManager settingsManager) : base(context, navigationService, settingsManager)
         {
-            _settingsManager = settingsManager;
             InitData();
         }
 
@@ -35,7 +32,7 @@ namespace Tasker.PCL.ViewModel
 
         private async void InitializeJsonData()
         {
-            var data = await _settingsManager.ReadJsonDataFileAsync<JsonData>("Json.dat");
+            var data = await SettingsManager.ReadJsonDataFileAsync<JsonData>("Json.dat");
             if(data != null && data.Events != null && data.Events.Any())
                 data.Events.Sort((x,y) => x.Date.CompareTo(y.Date));
             if (data != null && data.Categories != null && data.Categories.Any())
@@ -58,7 +55,7 @@ namespace Tasker.PCL.ViewModel
                     var copy = AppData.DeepCopy();
                     copy.Categories.Add(item);
                     copy.Categories.Sort((x,y) => x.Name.CompareTo(y.Name));
-                    await _settingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
+                    await SettingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
                     AppData = copy;
                     IsLoading = false;
                 }
@@ -77,7 +74,7 @@ namespace Tasker.PCL.ViewModel
                     var copy = AppData.DeepCopy();
                     copy.Events.Add(item);
                     copy.Events.Sort((x, y) => x.Date.CompareTo(y.Date));
-                    await _settingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
+                    await SettingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
                     AppData = copy;
                     IsLoading = false;
                 }
@@ -170,7 +167,28 @@ namespace Tasker.PCL.ViewModel
         public List<Category> Categories
         {
             get { return _categories; }
-            set { Set(CategoriesPropertyName, ref _categories, value); }
+            set
+            {
+                Set(CategoriesPropertyName, ref _categories, value);
+                ShowNoCategoriesMessage = _categories == null || _categories.Count == 0;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="ShowNoCategoriesMessage" /> property's name.
+        /// </summary>
+        public const string ShowNoCategoriesMessagePropertyName = "ShowNoCategoriesMessage";
+
+        private bool _showNoCategoriesMessage = false;
+
+        /// <summary>
+        /// Sets and gets the ShowNoCategoriesMessage property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public bool ShowNoCategoriesMessage
+        {
+            get { return _showNoCategoriesMessage; }
+            set { Set(ShowNoCategoriesMessagePropertyName, ref _showNoCategoriesMessage, value); }
         }
 
         /// <summary>

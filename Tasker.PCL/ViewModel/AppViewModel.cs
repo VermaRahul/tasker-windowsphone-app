@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
 using Tasker.PCL.Model;
+using Tasker.PCL.Utils;
 
 namespace Tasker.PCL.ViewModel
 {
@@ -12,11 +15,13 @@ namespace Tasker.PCL.ViewModel
     {
         public AppContext Context { get; set; }
         public INavigationService NavigationService { get; set; }
+        public ISettingsManager SettingsManager { get; set; }
 
-        public AppViewModel(AppContext context, INavigationService navigationService)
+        public AppViewModel(AppContext context, INavigationService navigationService, ISettingsManager settingsManager)
         {
             Context = context;
             NavigationService = navigationService;
+            SettingsManager = settingsManager;
         }
 
         public virtual void CleanUp()
@@ -61,6 +66,55 @@ namespace Tasker.PCL.ViewModel
         public void InvokeError(string message, string title)
         {
             InvokeError(new AppError(message, title));
+        }
+
+        #endregion
+
+        #region Commands
+
+        private RelayCommand<Event> _removeEventCommand;
+
+        /// <summary>
+        /// Gets the RemoveEventCommand.
+        /// </summary>
+        public RelayCommand<Event> RemoveEventCommand
+        {
+            get
+            {
+                return _removeEventCommand
+                    ?? (_removeEventCommand = new RelayCommand<Event>(ExecuteRemoveEventCommand));
+            }
+        }
+
+        private async void ExecuteRemoveEventCommand(Event param)
+        {
+            var hvm = ServiceLocator.Current.GetInstance<HomeViewModel>();
+            var evm = ServiceLocator.Current.GetInstance<EventsViewModel>();
+            if (hvm == null)
+                return;
+            JsonData copy = null;
+
+            if (hvm.AppData != null && hvm.AppData.Events != null && hvm.AppData.Events.Contains(param))
+            {
+                IsLoading = true;
+                hvm.AppData.Events.Remove(param);
+                copy = hvm.AppData.DeepCopy();
+                copy.Events.Sort((x, y) => x.Date.CompareTo(y.Date));
+                await SettingsManager.WriteJsonDataToFileAsync("Json.dat", copy);
+                hvm.AppData = copy;
+                IsLoading = false;
+            }
+            if (evm != null && !string.IsNullOrEmpty(evm.CategoryName) && copy != null && copy.Events != null)
+            {
+                var list = copy.Events != null
+                ? copy.Events.FindAll(
+                    t =>
+                        t.Category != null && !string.IsNullOrEmpty(t.Category.Name) &&
+                        t.Category.Name.Equals(evm.CategoryName))
+                : new List<Event>();
+
+                evm.Events = list;
+            }
         }
 
         #endregion

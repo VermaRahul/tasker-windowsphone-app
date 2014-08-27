@@ -22,6 +22,13 @@
                     <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu IsFadeEnabled="False" Background="White" Foreground="Black">
+                        <toolkit:MenuItem x:Name="RemoveMenuItem"
+                                          Header="Remove"
+                                          Click="RemoveEventOnClick"/>
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
                 <Rectangle Grid.Column="0"
                            Fill="{Binding Priority, Converter={StaticResource PriorityToBrushConverter}}" />
                 <StackPanel Grid.Column="1"

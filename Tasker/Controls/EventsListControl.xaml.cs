@@ -5,6 +5,7 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Reactive;
 using Microsoft.Phone.Shell;
@@ -65,6 +66,31 @@ namespace Tasker.Controls
             elc.GroupedEventsList = CustomKeyGroup<Event>.GetEventGroups(events);
         }
 
+
+
+        public RelayCommand<Event> RemoveEventCommand
+        {
+            get { return (RelayCommand<Event>)GetValue(MyPropertyProperty); }
+            set { SetValue(MyPropertyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MyPropertyProperty =
+            DependencyProperty.Register("RemoveEventCommand", typeof(RelayCommand<Event>), typeof(EventsListControl), new PropertyMetadata(null));
+
+        
+
         #endregion
+
+        private void RemoveEventOnClick(object sender, RoutedEventArgs e)
+        {
+            if(!(sender is MenuItem))
+                return;
+
+            var selectedEvent = (sender as MenuItem).DataContext as Event;
+
+            if(RemoveEventCommand != null)
+                RemoveEventCommand.Execute(selectedEvent);
+        }
     }
 }
