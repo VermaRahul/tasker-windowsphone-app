@@ -21,7 +21,7 @@
     <Language code="en-US" />
     <Language code="en-ZW" />
   </Languages>
-  <App xmlns="" ProductID="{cb43c8ef-49b3-48d1-9fdc-d0abcbb50b53}" Title="Tasker" RuntimeType="Silverlight" Version="1.0.1.0" Genre="apps.normal" Author="Coffee Monster" Description="Tasker is your best friend in planning your daily tasks and events. it will help you become more organized in a simple, yet powerful way. Planning your day has never been so simple." Publisher="Tasker" PublisherID="{e00d5210-de95-4f2b-a3c3-6da8370626e0}">
+  <App xmlns="" ProductID="{cb43c8ef-49b3-48d1-9fdc-d0abcbb50b53}" Title="Tasker Beta" RuntimeType="Silverlight" Version="1.0.1.0" Genre="apps.normal" Author="Coffee Monster" Description="Tasker Beta is your best friend in planning your daily tasks and events. it will help you become more organized in a simple, yet powerful way. Planning your day has never been so simple." Publisher="Tasker" PublisherID="{e00d5210-de95-4f2b-a3c3-6da8370626e0}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -37,7 +37,7 @@
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>Tasker</Title>
+          <Title>Tasker Beta</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>
